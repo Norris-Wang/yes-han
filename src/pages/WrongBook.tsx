@@ -1,11 +1,18 @@
 import { useEffect, useState, useRef } from "react";
+
 import { db, type ReviewDB } from "../db/db";
 import { saveAnswerToDb } from "../db/answerService";
+
 import type { ReviewUnit } from "../review/units";
+import { buildUnitsForLesson } from "../review/units";
+
 import type { KnowledgeBase } from "../data/schema";
+
 import type { GeneratedQuestion } from "../generators/types";
 import { generateFor } from "../generators";
+
 import QuestionRenderer from "../components/QuestionRenderer";
+
 import { Rating, type Grade } from "ts-fsrs";
 
 type SaveAnswerFn = typeof saveAnswerToDb;
@@ -22,12 +29,14 @@ export default function WrongBook({
     kb,
     onBack,
     database = db,
-    saveAnswerFn = saveAnswerToDb
+    saveAnswerFn = saveAnswerToDb,
+    readOnly = false
 }: {
     kb: KnowledgeBase;
     onBack: () => void;
     database?: ReviewDB;
     saveAnswerFn?: SaveAnswerFn;
+    readOnly?: boolean;
 }) {
     const [items, setItems] = useState<WrongItem[]>([]);
     const [loading, setLoading] = useState(true);
@@ -115,9 +124,19 @@ export default function WrongBook({
                 }
             }
 
+            const activeUnitKeys = new Set(
+                kb.lessons
+                    .flatMap(buildUnitsForLesson)
+                    .map(unit => unit.key)
+            );
+
             const list: WrongItem[] = [];
 
             for (const [unitKey, record] of history) {
+                // 过滤已经不属于当前课程的旧题
+                if (!activeUnitKeys.has(unitKey)) {
+                    continue;
+                }
                 // 没有错误，或者最后一次已经答对
                 if (
                     record.wrongCount === 0 ||
@@ -176,6 +195,7 @@ export default function WrongBook({
     }
 
     function startReview(item: WrongItem) {
+        if (readOnly) return;
         if (submittingRef.current) return;
 
         submittingRef.current = false;
@@ -200,6 +220,7 @@ export default function WrongBook({
         correct: boolean,
         rating?: Grade
     ) {
+        if (readOnly) return;
         if (
             !reviewing ||
             feedback ||
@@ -261,6 +282,7 @@ export default function WrongBook({
 
 
     async function handleAnswer(correct: boolean) {
+        if (readOnly) return;
         if (
             !reviewing ||
             feedback ||
@@ -335,9 +357,8 @@ export default function WrongBook({
     }
 
 
-    async function confirmWrongRating(
-        rating: Grade
-    ) {
+    async function confirmWrongRating(rating: Grade) {
+        if (readOnly) return;
         if (
             !reviewing ||
             !pendingRating ||
@@ -371,6 +392,7 @@ export default function WrongBook({
 
 
     async function retryWrongAnswer() {
+        if (readOnly) return;
         const pending = pendingAnswerRef.current;
 
         if (
@@ -452,6 +474,7 @@ export default function WrongBook({
                         question={q}
                         questionKey={reviewing.key}
                         answered={
+                            readOnly ||
                             answerLocked ||
                             saving ||
                             pendingRating ||
@@ -570,7 +593,9 @@ export default function WrongBook({
                             key={item.unitKey}
                             className="topic-turn"
                             style={{ cursor: "pointer", marginBottom: 10, border: "1px solid #f0f0f0" }}
-                            onClick={() => startReview(item)}
+                            onClick={() => {
+                                if (!readOnly) startReview(item);
+                            }}
                         >
                             <div style={{ flex: 1, minWidth: 0 }}>
                                 <div style={{ fontWeight: 600, marginBottom: 6, fontSize: 14, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }} title={describe(item)}>
@@ -580,7 +605,7 @@ export default function WrongBook({
                                     错 {item.wrongCount} 次 · 最近 {new Date(item.lastAt).toLocaleDateString()}
                                 </div>
                             </div>
-                            <span style={{ color: "#007aff", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", marginLeft: 8 }}>重做 →</span>
+                            <span style={{ color: "#007aff", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", marginLeft: 8 }}>{readOnly ? "仅查看" : "重做 →"}</span>
                         </div>
                     ))}
                 </div>

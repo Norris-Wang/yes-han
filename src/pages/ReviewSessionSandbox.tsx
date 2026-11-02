@@ -1,9 +1,7 @@
 
 import {
-    useCallback,
     useEffect,
     useMemo,
-    useRef,
     useState
 } from "react";
 
@@ -146,70 +144,24 @@ function TestSession({
     scenario: Scenario;
 }) {
     const [units, setUnits] = useState(config.units);
-    const unitsRef = useRef(units);
-    unitsRef.current = units;
 
     const [started, setStarted] = useState(false);
-    const [saved, setSaved] = useState<
+    const [saved] = useState<
         { key: string; correct: boolean; rating?: Grade }[]
     >([]);
 
-    const [persisted, setPersisted] = useState(
+    const [persisted] = useState(
         config.learnedItems
     );
 
     // 只在内存中模拟保存；绝不写入 IndexedDB
-    const mockSave = useCallback(
-        async (
-            key: string,
-            correct: boolean,
-            _type: string,
-            rating?: Grade
-        ): Promise<ReviewUnit> => {
-            const current = unitsRef.current[key];
 
-            if (!current) {
-                throw new Error("找不到模拟单元");
-            }
 
-            const updated: ReviewUnit = {
-                ...current,
-                seen: current.seen + 1,
-                dueAt: Date.now() + DAY
-            };
-
-            setSaved(prev => [
-                ...prev,
-                { key, correct, rating }
-            ]);
-
-            return updated;
-        },
-        []
-    );
-
-    const persistLearnedItems = useCallback(
-        (items: string[]) => {
-            setPersisted(items);
-        },
-        []
-    );
-
-    const dependencies = useMemo(() => ({
-        saveAnswerFn: mockSave,
-        initialLearnedItems: config.learnedItems,
-        persistLearnedItems
-    }), [
-        mockSave,
-        config.learnedItems,
-        persistLearnedItems
-    ]);
 
     const session = useReviewSession(
         config.kb,
         units,
-        setUnits,
-        dependencies
+        setUnits
     );
 
     function start() {

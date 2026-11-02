@@ -15,17 +15,61 @@ interface Props {
     units: Record<string, ReviewUnit>;
     dueReviewCount: number;
     newUnitCount: number;
+    progressionCount?: number;
     database?: ReviewDB;
     refreshRevision?: number;
     onStart: (m: Mode) => void;
     onWrongBook: () => void;
     onPractice: () => void;
     onReset: () => void;
+    onExportBackup?: () => Promise<void>;
 }
 
-export default function Dashboard({ kb, units, dueReviewCount, newUnitCount, onStart, onWrongBook, onPractice, onReset, database = db, refreshRevision = 0 }: Props) {
+export default function Dashboard({
+    kb,
+    units,
+    dueReviewCount,
+    newUnitCount,
+    progressionCount = 0,
+    onStart, onWrongBook, onPractice, onReset,
+    onExportBackup,
+    database = db, refreshRevision = 0
+}: Props) {
     const [showResetConfirm, setShowResetConfirm] = useState(false);
-    const [logs, setLogs] = useState<AnswerLog[]>([]);
+
+    const [exporting, setExporting] = useState(false);
+    const [exportError, setExportError] = useState("");
+
+    async function handleExportBackup() {
+        if (!onExportBackup || exporting) return;
+
+        setExporting(true);
+        setExportError("");
+
+        try {
+            await onExportBackup();
+        } catch (error) {
+            console.error("导出学习数据失败：", error);
+
+            setExportError(
+                error instanceof Error
+                    ? error.message
+                    : "导出失败，请稍后重试。"
+            );
+        } finally {
+            setExporting(false);
+        }
+    }
+
+    const [logState, setLogState] = useState<{
+        database: ReviewDB;
+        logs: AnswerLog[];
+    } | null>(null);
+
+    const logs =
+        logState?.database === database
+            ? logState.logs
+            : [];
     const [daysToShow, setDaysToShow] = useState(7);
 
     useEffect(() => {
@@ -41,16 +85,16 @@ export default function Dashboard({ kb, units, dueReviewCount, newUnitCount, onS
     useEffect(() => {
         let active = true;
 
-        // 切换数据库时先清除旧日志，避免短暂混用数据
-        setLogs([]);
-
         async function loadLogs() {
             try {
                 const result =
                     await database.logs.toArray();
 
                 if (active) {
-                    setLogs(result);
+                    setLogState({
+                        database,
+                        logs: result
+                    });
                 }
             } catch (error) {
                 if (active) {
@@ -67,7 +111,7 @@ export default function Dashboard({ kb, units, dueReviewCount, newUnitCount, onS
         return () => {
             active = false;
         };
-    }, [database, refreshRevision]);
+    }, [database, refreshRevision, units]);
 
     const totalLogs = logs.length;
     const correctLogs = logs.filter(l => l.correct).length;
@@ -188,6 +232,23 @@ export default function Dashboard({ kb, units, dueReviewCount, newUnitCount, onS
                 </div>
 
                 <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                    {onExportBackup && (
+                        <button
+                            className="btn secondary"
+                            style={{
+                                width: "auto",
+                                padding: "8px 16px",
+                                margin: 0
+                            }}
+                            disabled={exporting}
+                            onClick={() => void handleExportBackup()}
+                        >
+                            {exporting
+                                ? "正在导出…"
+                                : "💾 导出学习数据"}
+                        </button>
+                    )}
+
                     {!showResetConfirm ? (
                         <button
                             className="btn danger"
@@ -221,6 +282,18 @@ export default function Dashboard({ kb, units, dueReviewCount, newUnitCount, onS
                 </div>
             </header>
 
+            {exportError && (
+                <p
+                    role="alert"
+                    style={{
+                        color: "#c0392b",
+                        padding: "8px 12px"
+                    }}
+                >
+                    备份导出失败：{exportError}
+                </p>
+            )}
+
             <div className="dashboard-grid">
 
                 {/* ================= 左侧栏 ================= */}
@@ -232,11 +305,17 @@ export default function Dashboard({ kb, units, dueReviewCount, newUnitCount, onS
                         <button
                             className="btn"
                             onClick={() => onStart("due")}
-                            disabled={dueReviewCount === 0 && newUnitCount === 0}
+                            disabled={
+                                dueReviewCount +
+                                progressionCount +
+                                newUnitCount === 0
+                            }
                         >
-                            {dueReviewCount === 0 && newUnitCount === 0
+                            {dueReviewCount +
+                                progressionCount +
+                                newUnitCount === 0
                                 ? "今日任务已完成 🎉"
-                                : `今日复习 (旧: ${dueReviewCount} / 新: ${newUnitCount})`
+                                : `今日复习`
                             }
                         </button>
 

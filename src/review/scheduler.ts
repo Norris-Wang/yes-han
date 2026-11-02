@@ -33,7 +33,7 @@ export function schedule(
 
         // stage 从 1 开始表示首次答对
         // 所以取 stage - 1 对应的间隔
-        const intervalIndex = Math.max(
+        const intervalIndex = Math.min(
             INTERVALS.length - 1,
             Math.max(0, unit.stage - 1)
         );

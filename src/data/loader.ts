@@ -51,15 +51,17 @@ export async function syncUnitsToDB(
 
             const map: Record<string, ReviewUnit> = {};
 
-            // 保留已经存在的全部学习状态
-            for (const unit of stored) {
-                map[unit.key] = unit;
-            }
+            const storedByKey = new Map(
+                stored.map(unit => [unit.key, unit])
+            );
 
+            // 只让当前课程中的单元进入学习列表
             for (const unit of generated) {
+                const oldUnit = storedByKey.get(unit.key);
 
-                // 已存在的单元不允许覆盖
-                if (map[unit.key]) {
+                if (oldUnit) {
+                    // 已有知识点：保留原学习进度
+                    map[unit.key] = oldUnit;
                     continue;
                 }
 

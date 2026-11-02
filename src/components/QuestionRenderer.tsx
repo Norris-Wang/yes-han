@@ -55,11 +55,11 @@ export default function QuestionRenderer({
                 />
             );
 
-        default:
-            // 编译期检查：确保所有题型都已处理
+        default: {
             const neverType: never = question.type;
             throw new Error(
                 `未支持的题型：${neverType}`
             );
+        }
     }
 }
