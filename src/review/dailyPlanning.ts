@@ -2,6 +2,7 @@
 import type { ReviewUnit } from "./units";
 import { getEligibleUnits, getKnowledgeKey } from "./progression";
 import type { DailyCandidatePools } from "./selector";
+import { countDailyLearnedByType } from "./dailyLearnedCount";
 
 type ItemType = ReviewUnit["itemType"];
 
@@ -11,12 +12,7 @@ export function countLearnedByType(
     learnedItems: string[],
     type: ItemType
 ): number {
-    return new Set(
-        learnedItems.filter(key =>
-            key.startsWith(`${type}_`) ||
-            key.split("|")[1] === type
-        )
-    ).size;
+    return countDailyLearnedByType(learnedItems, type);
 }
 
 export function buildDailyCandidatePools(

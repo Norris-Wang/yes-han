@@ -42,6 +42,7 @@ export default function FsrsIntegrationSandbox() {
 
     const setupRef = useRef<Promise<KnowledgeBase> | null>(null);
     const targetKeyRef = useRef("");
+    const [targetKey, setTargetKey] = useState("");
 
     const [kb, setKb] = useState<KnowledgeBase | null>(null);
     const [units, setUnits] = useState<Record<string, ReviewUnit>>({});
@@ -126,6 +127,7 @@ export default function FsrsIntegrationSandbox() {
                 }
 
                 targetKeyRef.current = target.key;
+                setTargetKey(target.key);
 
                 // 第一次学习：Good
                 // 时间设置在过去，便于构造再次到期
@@ -287,7 +289,7 @@ export default function FsrsIntegrationSandbox() {
 
                 <p>
                     测试单元：
-                    {targetKeyRef.current}
+                    {targetKey}
                 </p>
 
                 <p>

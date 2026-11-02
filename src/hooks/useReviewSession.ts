@@ -1,26 +1,34 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import type {
+    Dispatch,
+    SetStateAction
+} from "react";
 
 import type { KnowledgeBase } from "../data/schema";
 
 import type { ReviewUnit } from "../review/units";
 import { selectSessionUnits, selectDailyUnits } from "../review/selector";
-import { getEligibleUnits, getKnowledgeKey } from "../review/progression";
+import { getEligibleUnits } from "../review/progression";
 import { buildDailyCandidatePools } from "../review/dailyPlanning";
 
 import { generateFor } from "../generators";
 import type { GeneratedQuestion } from "../generators/types";
 
-import { saveAnswer } from "../db/answerService";
+import {
+    saveAnswerWithDailyToDb,
+    repairDailyRecordToDb,
+    type DailyLearningStore
+} from "../db/answerService";
+
+import {
+    db,
+    type ReviewDB
+} from "../db/db";
 
 import { Rating, type Grade } from "ts-fsrs";
 
 export type Mode = "due" | "vocab" | "grammar" | "topic" | "mix";
 
-type ReviewSessionDependencies = {
-    saveAnswerFn?: typeof saveAnswer;
-    initialLearnedItems?: string[];
-    persistLearnedItems?: (items: string[]) => void;
-};
 
 export const DAILY_LIMIT = { vocab: 20, grammar: 1, topic: 1 };
 
@@ -29,17 +37,39 @@ function getTodayStr() {
     return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-function getLearnedItemsToday() {
+function getLearnedItemsToday(
+    storage: DailyLearningStore
+): string[] {
     const key = `kr_learned_items_${getTodayStr()}`;
-    try { return JSON.parse(localStorage.getItem(key) || "[]"); } catch { return []; }
+
+    try {
+        const parsed: unknown = JSON.parse(
+            storage.getItem(key) ?? "[]"
+        );
+
+        return Array.isArray(parsed) &&
+            parsed.every(item => typeof item === "string")
+            ? parsed
+            : [];
+    } catch {
+        return [];
+    }
 }
 
 export function useReviewSession(
     kb: KnowledgeBase | null,
     units: Record<string, ReviewUnit>,
-    setUnits: (u: any) => void,
-    dependencies: ReviewSessionDependencies = {}
+    setUnits: Dispatch<
+        SetStateAction<Record<string, ReviewUnit>>
+    >,
+    options: {
+        database?: ReviewDB;
+        dailyStore?: DailyLearningStore;
+    } = {}
 ) {
+    const database = options.database ?? db;
+    const dailyStore = options.dailyStore ?? window.localStorage;
+
     const [queue, setQueue] = useState<string[]>([]);
     const [index, setIndex] = useState(0);
     const [current, setCurrent] = useState<{ key: string; unit: ReviewUnit; q: GeneratedQuestion; lastCorrect?: boolean } | null>(null);
@@ -47,10 +77,50 @@ export function useReviewSession(
     const [correctCount, setCorrectCount] = useState(0);
     const [answeredCount, setAnsweredCount] = useState(0);
     const [learnedItems, setLearnedItems] =
-        useState<string[]>(() =>
-            dependencies.initialLearnedItems ??
-            getLearnedItemsToday()
+        useState<string[]>(
+            () => getLearnedItemsToday(dailyStore)
         );
+
+
+
+
+    const ensureTodayLearnedItems = useCallback((): string[] => {
+        // 每次检查都从当前注入的存储读取，
+        // 避免其他标签页更新后继续使用旧数据。
+        const todayItems = getLearnedItemsToday(dailyStore);
+
+        // 内容没有变化时，沿用旧状态，
+        // 避免无意义的 React 重新渲染。
+        setLearnedItems(prev => {
+            const unchanged =
+                prev.length === todayItems.length &&
+                prev.every(
+                    (item, index) =>
+                        item === todayItems[index]
+                );
+
+            return unchanged ? prev : todayItems;
+        });
+
+        return todayItems;
+    }, [dailyStore]);
+
+    useEffect(() => {
+        const check = () => {
+            ensureTodayLearnedItems();
+        };
+
+        const interval = window.setInterval(check, 30_000);
+
+        window.addEventListener("focus", check);
+        document.addEventListener("visibilitychange", check);
+
+        return () => {
+            window.clearInterval(interval);
+            window.removeEventListener("focus", check);
+            document.removeEventListener("visibilitychange", check);
+        };
+    }, [ensureTodayLearnedItems]);
 
     const autoNextRef = useRef<number | null>(null);
     const nextQuestionRef = useRef<() => void>(() => { });
@@ -60,6 +130,18 @@ export function useReviewSession(
 
     const [saving, setSaving] = useState(false);
     const [saveError, setSaveError] = useState("");
+
+    const [dailyRepair, setDailyRepair] = useState<{
+        unitKey: string;
+        dayKey: string;
+    } | null>(null);
+
+    const [dailyWarning, setDailyWarning] = useState("");
+
+    const [repairingDaily, setRepairingDaily] =
+        useState(false);
+
+    const repairingDailyRef = useRef(false);
 
     const [pendingRating, setPendingRating] = useState<string | null>(null);
 
@@ -78,7 +160,12 @@ export function useReviewSession(
     }, [units, kb]);
 
     const nextQuestion = useCallback(() => {
-        if (submittingRef.current || pendingRating !== null) {
+        if (
+            submittingRef.current ||
+            pendingRating !== null ||
+            dailyRepair !== null ||
+            repairingDailyRef.current
+        ) {
             return;
         }
         if (autoNextRef.current !== null) {
@@ -99,91 +186,86 @@ export function useReviewSession(
         }
 
         setCurrent(null);
-    }, [index, queue, units, loadQuestion, pendingRating]);
+    }, [index, queue, loadQuestion, pendingRating, dailyRepair]);
 
-    nextQuestionRef.current = nextQuestion;
+    useEffect(() => {
+        nextQuestionRef.current = nextQuestion;
+    }, [nextQuestion]);
+
 
 
     const commitAnswer = useCallback(
-        async (
-            correct: boolean,
-            rating?: Grade
-        ) => {
+        async (correct: boolean, rating?: Grade) => {
             if (
                 !current ||
                 answered ||
-                submittingRef.current
+                submittingRef.current ||
+                dailyRepair !== null
             ) {
                 return;
             }
 
             const sessionId = sessionIdRef.current;
             const { key, q } = current;
-            const knowledgeKey = getKnowledgeKey(current.unit);
-
-            const wasKnownBefore = Object.values(units).some(
-                unit =>
-                    getKnowledgeKey(unit) === knowledgeKey &&
-                    unit.seen > 0
-            );
 
             submittingRef.current = true;
             setSaving(true);
             setSaveError("");
 
             try {
-                // 此时才真正保存答题结果
-                const updated = await (
-                    dependencies.saveAnswerFn ?? saveAnswer
-                )(
-                    key,
-                    correct,
-                    q.type,
-                    rating
-                );
+                // 一把独占锁覆盖数据库事务和每日记录写入。
+                const { updated, daily } =
+                    await saveAnswerWithDailyToDb(
+                        database,
+                        dailyStore,
+                        key,
+                        correct,
+                        q.type,
+                        Date.now(),
+                        rating
+                    );
 
-                // 保持 React 学习状态与数据库一致
+                // 这里数据库已经成功提交。
+                // 无论 daily.status 是否为 failed，
+                // 都不能重新保存同一道题。
                 setUnits((prev: Record<string, ReviewUnit>) => ({
                     ...prev,
                     [key]: updated
                 }));
 
-                // 会话已切换，不再更新旧会话界面
                 if (sessionId !== sessionIdRef.current) {
                     return;
                 }
 
-                // 记录首次接触的知识点
-                const itemKey = getKnowledgeKey(updated);
-
-                if (updated.seen === 1 && !wasKnownBefore) {
-                    setLearnedItems(prev => {
-                        if (prev.includes(itemKey)) {
-                            return prev;
-                        }
-
-                        const next = [...prev, itemKey];
-
-                        if (dependencies.persistLearnedItems) {
-                            dependencies.persistLearnedItems(next);
-                        } else {
-                            localStorage.setItem(
-                                `kr_learned_items_${getTodayStr()}`,
-                                JSON.stringify(next)
-                            );
-                        }
-
-                        return next;
-                    });
+                if (daily.items !== null) {
+                    setLearnedItems(daily.items);
                 }
 
-                // 保存成功后才标记完成
+                if (daily.status === "failed") {
+                    setDailyRepair({
+                        unitKey: key,
+                        dayKey: daily.dayKey
+                    });
+
+                    setDailyWarning(
+                        "答案已经保存，但今日学习统计更新失败。" +
+                        "请只修复每日记录，不要重新作答。" +
+                        (daily.error
+                            ? ` 原因：${daily.error}`
+                            : "")
+                    );
+                } else {
+                    setDailyRepair(null);
+                    setDailyWarning("");
+                }
+
+                // 数据库成功即代表本次答题完成。
                 setPendingRating(null);
                 setAnswered(true);
-                setAnsweredCount(c => c + 1);
+                setAnsweredCount(count => count + 1);
 
                 if (correct) {
-                    setCorrectCount(c => c + 1);
+                    setCorrectCount(count => count + 1);
                 }
 
                 setCurrent(prev =>
@@ -192,12 +274,10 @@ export function useReviewSession(
                         : prev
                 );
 
-                // 正确答案保存成功后自动跳题
-                if (correct) {
+                // 如果每日记录需要修复，先留在当前题目。
+                if (correct && daily.status !== "failed") {
                     if (autoNextRef.current !== null) {
-                        window.clearTimeout(
-                            autoNextRef.current
-                        );
+                        window.clearTimeout(autoNextRef.current);
                     }
 
                     autoNextRef.current =
@@ -208,23 +288,23 @@ export function useReviewSession(
                 }
 
             } catch (error) {
-                console.error("答题保存失败：", error);
+                // 只有保存服务抛错，才进入数据库保存失败分支。
+                console.error("答题保存请求失败：", error);
 
                 if (sessionId === sessionIdRef.current) {
                     setSaveError(
-                        "保存失败，请重试本次提交。"
+                        "答题保存未确认成功，请检查错误后再重试。"
                     );
 
-                    // 没有等待评分时，允许重新提交答案。
-                    // 等待评分时只允许重新点击评分按钮。
                     if (pendingRating === null) {
                         answerJudgedRef.current = false;
                     }
                 }
 
             } finally {
+                submittingRef.current = false;
+
                 if (sessionId === sessionIdRef.current) {
-                    submittingRef.current = false;
                     setSaving(false);
                 }
             }
@@ -233,13 +313,101 @@ export function useReviewSession(
             current,
             answered,
             pendingRating,
-            setUnits,
-            units,
-            dependencies.saveAnswerFn,
-            dependencies.persistLearnedItems
+            dailyRepair,
+            database,
+            dailyStore,
+            setUnits
         ]
     );
 
+
+    const repairDaily = useCallback(async () => {
+        if (
+            !dailyRepair ||
+            repairingDailyRef.current ||
+            submittingRef.current
+        ) {
+            return;
+        }
+
+        const request = dailyRepair;
+        const sessionId = sessionIdRef.current;
+
+        repairingDailyRef.current = true;
+        setRepairingDaily(true);
+
+        try {
+            // 不执行 FSRS 调度，不新增答题日志。
+            const result = await repairDailyRecordToDb(
+                database,
+                dailyStore,
+                request.unitKey,
+                request.dayKey
+            );
+
+            if (sessionId !== sessionIdRef.current) {
+                return;
+            }
+
+            if (
+                result.status === "written" ||
+                result.status === "already_present"
+            ) {
+                if (result.items !== null) {
+                    setLearnedItems(result.items);
+                }
+
+                setDailyRepair(null);
+                setDailyWarning("");
+
+                // 原题已正确保存时，修复后恢复自动跳题。
+                if (
+                    current?.key === request.unitKey &&
+                    current.lastCorrect === true
+                ) {
+                    if (autoNextRef.current !== null) {
+                        window.clearTimeout(autoNextRef.current);
+                    }
+
+                    autoNextRef.current =
+                        window.setTimeout(() => {
+                            autoNextRef.current = null;
+                            nextQuestionRef.current();
+                        }, 900);
+                }
+
+                return;
+            }
+
+            setDailyWarning(
+                "答案已保存，但每日统计修复仍然失败。" +
+                "请不要重新提交答案。" +
+                (result.error ? ` ${result.error}` : "")
+            );
+
+        } catch (error) {
+            if (sessionId === sessionIdRef.current) {
+                setDailyWarning(
+                    "答案已保存，但每日统计暂时无法修复：" +
+                    (error instanceof Error
+                        ? error.message
+                        : String(error))
+                );
+            }
+
+        } finally {
+            repairingDailyRef.current = false;
+
+            if (sessionId === sessionIdRef.current) {
+                setRepairingDaily(false);
+            }
+        }
+    }, [
+        current,
+        dailyRepair,
+        database,
+        dailyStore
+    ]);
 
     const handleAnswer = useCallback(
         (correct: boolean) => {
@@ -302,14 +470,38 @@ export function useReviewSession(
         [current, pendingRating, commitAnswer]
     );
 
-    const startSession = useCallback((mode: Mode, allUnits: ReviewUnit[], isAnswerable: (u: ReviewUnit) => boolean) => {
+
+    const startSession = useCallback((
+        mode: Mode,
+        allUnits: ReviewUnit[],
+        isAnswerable: (u: ReviewUnit) => boolean
+    ) => {
+        // 数据库保存或每日记录修复期间，
+        // 禁止启动新的答题会话。
+        if (
+            submittingRef.current ||
+            repairingDailyRef.current
+        ) {
+            return false;
+        }
+
+        // 不能通过重新开始会话丢弃待修复提示。
+        if (dailyRepair !== null) {
+            alert("请先修复尚未完成的每日学习统计。");
+            return false;
+        }
+
+        // 开始前读取最新的今日学习记录。
+        const todayLearned = ensureTodayLearnedItems();
+
         sessionIdRef.current += 1;
-        submittingRef.current = false;
         answerJudgedRef.current = false;
         setPendingRating(null);
 
         setSaving(false);
         setSaveError("");
+
+        // 以下保留原有 startSession 代码。
 
         if (autoNextRef.current !== null) {
             window.clearTimeout(autoNextRef.current);
@@ -327,7 +519,7 @@ export function useReviewSession(
         else if (mode === "due") {
             const pools = buildDailyCandidatePools(
                 allUnits,
-                learnedItems,
+                todayLearned,
                 isAnswerable,
                 DAILY_LIMIT
             );
@@ -403,7 +595,7 @@ export function useReviewSession(
         alert("当前没有可生成的题目，请检查课程数据。");
 
         return false;
-    }, [learnedItems, loadQuestion, dependencies.initialLearnedItems]);
+    }, [loadQuestion, ensureTodayLearnedItems, dailyRepair]);
 
     const endSession = useCallback(() => {
         sessionIdRef.current += 1;
@@ -431,6 +623,15 @@ export function useReviewSession(
         learnedItems, setLearnedItems,
         saving, saveError,
         pendingRating, confirmRating,
-        answerLocked: answered || saving || pendingRating !== null,
+        dailyRepair,
+        dailyWarning,
+        repairingDaily,
+        repairDaily,
+        answerLocked:
+            answered ||
+            saving ||
+            repairingDaily ||
+            pendingRating !== null ||
+            dailyRepair !== null,
     };
 }

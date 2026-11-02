@@ -64,6 +64,8 @@ export function validateLearningBackup(
 ): BackupValidationResult {
     const issues: BackupIssue[] = [];
 
+    let hasErrors = false;
+
     const stats = {
         units: 0,
         logs: 0,
@@ -78,6 +80,10 @@ export function validateLearningBackup(
         path: string,
         message: string
     ) => {
+        if (severity === "error") {
+            hasErrors = true;
+        }
+
         if (issues.length < MAX_ISSUES) {
             issues.push({ severity, path, message });
         }
@@ -458,9 +464,7 @@ export function validateLearningBackup(
         );
     }
 
-    const valid = !issues.some(
-        x => x.severity === "error"
-    );
+    const valid = !hasErrors;
 
     return {
         valid,

@@ -79,7 +79,7 @@ export function readLearningStorage(
 export async function exportLearningBackup(
     database: ReviewDB,
     storage: ReadableStorage = localStorage,
-    appVersion = "0.10.0"
+    appVersion = "0.10.1"
 ): Promise<LearningBackup> {
     // 先读取 localStorage。
     // 它与 IndexedDB 没有跨存储事务保证。
