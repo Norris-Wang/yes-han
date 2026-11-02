@@ -10,7 +10,7 @@ import {
 import { getDefaultSchedulingAlgorithm } from "./review/schedulingConfig";
 import { Rating } from "./review/fsrsScheduler";
 import { getKnowledgeKey } from "./review/progression";
-import { buildDailyCandidatePools } from "./review/dailyPlanning";
+import { buildDailyCandidatePools, type DailyLimits } from "./review/dailyPlanning";
 import { selectDailyUnits } from "./review/selector";
 
 import { db } from "./db/db";
@@ -24,11 +24,68 @@ import {
 import Dashboard from "./pages/Dashboard";
 import WrongBook from "./pages/WrongBook";
 import PracticeLab from "./pages/PracticeLab";
-import WrongBookSandbox from "./pages/WrongBookSandbox";
 
 import QuestionRenderer from "./components/QuestionRenderer";
 
 import { useReviewSession, DAILY_LIMIT } from "./hooks/useReviewSession";
+
+
+
+
+const DAILY_GOALS_KEY = "yeshan_daily_goals_v1";
+
+function readDailyGoals(): DailyLimits | null {
+    const defaults: DailyLimits = {
+        ...DAILY_LIMIT
+    };
+
+    try {
+        const raw = localStorage.getItem(DAILY_GOALS_KEY);
+
+        if (raw === null) {
+            return defaults;
+        }
+
+        const parsed: unknown = JSON.parse(raw);
+
+        // null 代表不限量
+        if (parsed === null) {
+            return null;
+        }
+
+        if (
+            !parsed ||
+            typeof parsed !== "object" ||
+            Array.isArray(parsed)
+        ) {
+            return defaults;
+        }
+
+        const values = parsed as Record<string, unknown>;
+
+        const valid = (value: unknown) =>
+            typeof value === "number" &&
+            Number.isSafeInteger(value) &&
+            value >= 0 &&
+            value <= 1000;
+
+        if (
+            !valid(values.vocab) ||
+            !valid(values.grammar) ||
+            !valid(values.topic)
+        ) {
+            return defaults;
+        }
+
+        return {
+            vocab: values.vocab as number,
+            grammar: values.grammar as number,
+            topic: values.topic as number
+        };
+    } catch {
+        return defaults;
+    }
+}
 
 type View =
     | "home"
@@ -43,6 +100,7 @@ export default function App() {
     const [kb, setKb] = useState<KnowledgeBase | null>(null);
     const [units, setUnits] = useState<Record<string, ReviewUnit>>({});
     const [view, setView] = useState<View>("home");
+    const [dailyLimits, setDailyLimits] = useState<DailyLimits | null>(readDailyGoals);
     const [error, setError] = useState("");
 
     useEffect(() => {
@@ -109,7 +167,7 @@ export default function App() {
         allUnits,
         session.learnedItems,
         isAnswerable,
-        DAILY_LIMIT
+        dailyLimits
     );
 
     const dailySelected = selectDailyUnits(dailyPools);
@@ -146,14 +204,6 @@ export default function App() {
     if (error) return <div style={{ padding: 40, color: "red" }}>{error}</div>;
     if (!kb) return <div style={{ padding: 40 }}>加载中…</div>;
 
-    if (
-        import.meta.env.DEV &&
-        new URLSearchParams(
-            window.location.search
-        ).has("wrongbook-test")
-    ) {
-        return <WrongBookSandbox kb={kb} />;
-    }
 
 
 
@@ -192,11 +242,28 @@ export default function App() {
                     units={units}
                     dueReviewCount={dueCount}
                     newUnitCount={actualNewUnitCount}
+                    dailyLimits={dailyLimits}
+                    onSaveDailyLimits={(nextLimits) => {
+                        try {
+                            localStorage.setItem(
+                                DAILY_GOALS_KEY,
+                                JSON.stringify(nextLimits)
+                            );
+
+                            setDailyLimits(nextLimits);
+                            return true;
+                        } catch (error) {
+                            console.error("保存每日学习设置失败：", error);
+                            alert("保存失败，请检查浏览器存储。");
+                            return false;
+                        }
+                    }}
                     onStart={(mode) => {
                         const started = session.startSession(
                             mode,
                             allUnits,
-                            isAnswerable
+                            isAnswerable,
+                            dailyLimits
                         );
 
                         if (started) {
@@ -378,8 +445,26 @@ export default function App() {
                     <h1>第 {session.answeredCount + 1} 题</h1>
                     <button className="btn secondary"
                         style={{ width: "auto", padding: "8px 14px", fontSize: 14, margin: 0 }}
-                        onClick={() => { session.endSession(); setView("home"); }}
-                        disabled={session.saving || session.repairingDaily}>结束</button>
+                        onClick={() => {
+                            if (session.pendingRating !== null) {
+                                const confirmed = window.confirm(
+                                    "当前题目尚未完成评分和保存，确定结束吗？"
+                                );
+
+                                if (!confirmed) return;
+                            }
+
+                            const hasAnswers = session.answeredCount > 0;
+
+                            session.endSession();
+
+                            setView(hasAnswers ? "summary" : "home");
+                        }}
+                        disabled={
+                            session.saving ||
+                            session.repairingDaily ||
+                            !!session.dailyRepair
+                        }>结束</button>
                 </header>
 
                 <div className="card">
@@ -397,14 +482,6 @@ export default function App() {
                             ✅ 回答正确！
                         </div>
 
-                        <p style={{
-                            marginTop: 14,
-                            marginBottom: 14,
-                            fontSize: 14
-                        }}>
-                            这次回忆对你来说有多难？
-                        </p>
-
                         <div style={{
                             display: "grid",
                             gridTemplateColumns:
@@ -418,10 +495,7 @@ export default function App() {
                                     session.confirmRating(Rating.Hard)
                                 }
                             >
-                                Hard
-                                <small style={{ display: "block" }}>
-                                    有点吃力
-                                </small>
+                                困难
                             </button>
 
                             <button
@@ -431,10 +505,7 @@ export default function App() {
                                     session.confirmRating(Rating.Good)
                                 }
                             >
-                                Good
-                                <small style={{ display: "block" }}>
-                                    正常回忆
-                                </small>
+                                正常
                             </button>
 
                             <button
@@ -444,20 +515,10 @@ export default function App() {
                                     session.confirmRating(Rating.Easy)
                                 }
                             >
-                                Easy
-                                <small style={{ display: "block" }}>
-                                    非常轻松
-                                </small>
+                                轻松
                             </button>
                         </div>
 
-                        <p style={{
-                            marginTop: 12,
-                            fontSize: 12,
-                            color: "#86868b"
-                        }}>
-                            选择评分后保存本次复习记录
-                        </p>
                     </div>
                 )}
 

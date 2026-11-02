@@ -1,7 +1,6 @@
 
 import type { ReviewUnit } from "./units";
 
-export const SESSION_LIMIT = 20;
 
 type ItemType = ReviewUnit["itemType"];
 
@@ -184,7 +183,7 @@ export function selectSessionUnits(
     pool: ReviewUnit[],
     mode: string,
     now = Date.now(),
-    maxCount = SESSION_LIMIT
+    maxCount = pool.length
 ): ReviewUnit[] {
     if (maxCount <= 0) {
         return [];
@@ -246,7 +245,10 @@ export interface DailyCandidatePools {
  */
 export function selectDailyUnits(
     pools: DailyCandidatePools,
-    maxCount = SESSION_LIMIT
+    maxCount =
+        pools.due.length +
+        pools.progression.length +
+        pools.fresh.length
 ): ReviewUnit[] {
     if (maxCount <= 0) {
         return [];
