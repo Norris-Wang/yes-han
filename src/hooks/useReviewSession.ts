@@ -8,8 +8,8 @@ import type { KnowledgeBase } from "../data/schema";
 
 import type { ReviewUnit } from "../review/units";
 import { selectSessionUnits, selectDailyUnits } from "../review/selector";
-import { getEligibleUnits } from "../review/progression";
-import { buildDailyCandidatePools } from "../review/dailyPlanning";
+import { getEligibleUnits, getKnowledgeKey } from "../review/progression";
+import { buildDailyCandidatePools, type DailyLimits } from "../review/dailyPlanning";
 
 import { generateFor } from "../generators";
 import type { GeneratedQuestion } from "../generators/types";
@@ -30,7 +30,11 @@ import { Rating, type Grade } from "ts-fsrs";
 export type Mode = "due" | "vocab" | "grammar" | "topic" | "mix";
 
 
-export const DAILY_LIMIT = { vocab: 20, grammar: 1, topic: 1 };
+export const DAILY_LIMIT: DailyLimits = {
+    vocab: 20,
+    grammar: 1,
+    topic: 1
+};
 
 function getTodayStr() {
     const d = new Date();
@@ -127,6 +131,12 @@ export function useReviewSession(
 
     const submittingRef = useRef(false);
     const sessionIdRef = useRef(0);
+    const sessionPlanRef = useRef<{ mode: Mode; dailyLimits: DailyLimits | null; } | null>(null);
+    const latestUnitsRef = useRef(units);
+
+    useEffect(() => {
+        latestUnitsRef.current = units;
+    }, [units]);
 
     const [saving, setSaving] = useState(false);
     const [saveError, setSaveError] = useState("");
@@ -148,7 +158,7 @@ export function useReviewSession(
     const answerJudgedRef = useRef(false);
 
     const loadQuestion = useCallback((key: string): boolean => {
-        const unit = units[key];
+        const unit = latestUnitsRef.current[key];
         if (!unit || !kb) return false;
         const q = generateFor(kb, unit);
         if (!q) return false;
@@ -157,7 +167,8 @@ export function useReviewSession(
         setCurrent({ key, unit, q, lastCorrect: undefined });
         setAnswered(false);
         return true;
-    }, [units, kb]);
+    }, [kb]);
+
 
     const nextQuestion = useCallback(() => {
         if (
@@ -168,25 +179,146 @@ export function useReviewSession(
         ) {
             return;
         }
+
         if (autoNextRef.current !== null) {
             window.clearTimeout(autoNextRef.current);
             autoNextRef.current = null;
         }
-        let nextIdx = index + 1;
-        while (nextIdx < queue.length) {
-            const key = queue[nextIdx];
 
-            if (loadQuestion(key)) {
+        // 第一阶段：优先完成原队列。
+        let nextIdx = index + 1;
+
+        while (nextIdx < queue.length) {
+            if (loadQuestion(queue[nextIdx])) {
                 setIndex(nextIdx);
                 return;
+            }
+
+            nextIdx++;
+        }
+
+        // 第二阶段：队列耗尽后重新检查新解锁的题目。
+        const plan = sessionPlanRef.current;
+
+        if (plan) {
+            const allUnits = Object.values(
+                latestUnitsRef.current
+            );
+
+            // 同一个会话中，同一复习单元只安排一次。
+            const alreadyQueued = new Set(queue);
+
+            // 与 App.tsx 保持相同的词汇方向过滤规则。
+            const completedFillKeys = new Set(
+                allUnits
+                    .filter(unit => {
+                        if (
+                            unit.itemType !== "vocab" ||
+                            unit.direction !== "fill"
+                        ) {
+                            return false;
+                        }
+
+                        const algorithm =
+                            unit.schedulingAlgorithm ?? "fixed";
+
+                        return algorithm === "fsrs"
+                            ? unit.seen > 0 &&
+                            unit.seen > unit.lapses
+                            : unit.stage >= 1;
+                    })
+                    .map(getKnowledgeKey)
+            );
+
+            const isAnswerable = (
+                unit: ReviewUnit
+            ): boolean =>
+                !(
+                    unit.itemType === "vocab" &&
+                    unit.direction !== "fill" &&
+                    completedFillKeys.has(
+                        getKnowledgeKey(unit)
+                    )
+                );
+
+            let extra: ReviewUnit[];
+
+            if (plan.mode === "due") {
+                // 今日复习：继续遵守每日目标。
+                // 先在完整数据上计算配额，
+                // 然后排除本次会话已安排的题目。
+                const pools = buildDailyCandidatePools(
+                    allUnits,
+                    getLearnedItemsToday(dailyStore),
+                    isAnswerable,
+                    plan.dailyLimits
+                );
+
+                extra = selectDailyUnits({
+                    due: pools.due.filter(
+                        unit => !alreadyQueued.has(unit.key)
+                    ),
+                    progression: pools.progression.filter(
+                        unit => !alreadyQueued.has(unit.key)
+                    ),
+                    fresh: pools.fresh.filter(
+                        unit => !alreadyQueued.has(unit.key)
+                    )
+                });
             } else {
-                nextIdx++;
-                continue;
+                // 其他模式：保留原有的题型过滤规则。
+                const eligible = getEligibleUnits(
+                    allUnits.filter(isAnswerable)
+                ).filter(
+                    unit => !alreadyQueued.has(unit.key)
+                );
+
+                const pool = eligible.filter(
+                    unit =>
+                        plan.mode === "mix" ||
+                        unit.itemType === plan.mode
+                );
+
+                extra = selectSessionUnits(
+                    pool,
+                    plan.mode
+                );
+            }
+
+            // 追加新题目，并立即加载第一道有效题目。
+            const extraKeys = extra.map(unit => unit.key);
+
+            for (
+                let offset = 0;
+                offset < extraKeys.length;
+                offset++
+            ) {
+                if (loadQuestion(extraKeys[offset])) {
+                    const base = queue.length;
+
+                    setQueue(prev => [
+                        ...prev,
+                        ...extraKeys
+                    ]);
+
+                    setIndex(base + offset);
+                    return;
+                }
             }
         }
 
+        // 第三阶段：确实没有可选题目，才结束。
+        sessionPlanRef.current = null;
         setCurrent(null);
-    }, [index, queue, loadQuestion, pendingRating, dailyRepair]);
+
+    }, [
+        index,
+        queue,
+        loadQuestion,
+        pendingRating,
+        dailyRepair,
+        dailyStore
+    ]);
 
     useEffect(() => {
         nextQuestionRef.current = nextQuestion;
@@ -225,9 +357,11 @@ export function useReviewSession(
                         rating
                     );
 
-                // 这里数据库已经成功提交。
-                // 无论 daily.status 是否为 failed，
-                // 都不能重新保存同一道题。
+                latestUnitsRef.current = {
+                    ...latestUnitsRef.current,
+                    [key]: updated
+                };
+
                 setUnits((prev: Record<string, ReviewUnit>) => ({
                     ...prev,
                     [key]: updated
@@ -474,7 +608,8 @@ export function useReviewSession(
     const startSession = useCallback((
         mode: Mode,
         allUnits: ReviewUnit[],
-        isAnswerable: (u: ReviewUnit) => boolean
+        isAnswerable: (u: ReviewUnit) => boolean,
+        dailyLimits: DailyLimits | null = DAILY_LIMIT
     ) => {
         // 数据库保存或每日记录修复期间，
         // 禁止启动新的答题会话。
@@ -491,17 +626,15 @@ export function useReviewSession(
             return false;
         }
 
-        // 开始前读取最新的今日学习记录。
         const todayLearned = ensureTodayLearnedItems();
 
         sessionIdRef.current += 1;
         answerJudgedRef.current = false;
+        sessionPlanRef.current = null;
         setPendingRating(null);
 
         setSaving(false);
         setSaveError("");
-
-        // 以下保留原有 startSession 代码。
 
         if (autoNextRef.current !== null) {
             window.clearTimeout(autoNextRef.current);
@@ -521,13 +654,10 @@ export function useReviewSession(
                 allUnits,
                 todayLearned,
                 isAnswerable,
-                DAILY_LIMIT
+                dailyLimits
             );
 
-            const dailySelected = selectDailyUnits(
-                pools,
-                20
-            );
+            const dailySelected = selectDailyUnits(pools);
 
             if (dailySelected.length === 0) {
                 alert("今日复习任务已完成 🎉\n明天再来吧！");
@@ -548,9 +678,7 @@ export function useReviewSession(
                 ? pool
                 : selectSessionUnits(
                     pool,
-                    mode,
-                    Date.now(),
-                    20
+                    mode
                 );
 
         // 仅在开发环境中输出选题结果
@@ -580,6 +708,11 @@ export function useReviewSession(
 
         while (startIdx < keys.length) {
             if (loadQuestion(keys[startIdx])) {
+                sessionPlanRef.current = {
+                    mode,
+                    dailyLimits
+                };
+
                 setIndex(startIdx);
                 return true;
             }
@@ -587,7 +720,6 @@ export function useReviewSession(
             startIdx++;
         }
 
-        // 复习单元存在，但没有任何一条能够生成题目
         setCurrent(null);
         setQueue([]);
         setIndex(0);
@@ -598,6 +730,7 @@ export function useReviewSession(
     }, [loadQuestion, ensureTodayLearnedItems, dailyRepair]);
 
     const endSession = useCallback(() => {
+        sessionPlanRef.current = null;
         sessionIdRef.current += 1;
         answerJudgedRef.current = false;
         setPendingRating(null);

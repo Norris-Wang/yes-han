@@ -7,6 +7,7 @@ import type { KnowledgeBase } from "../data/schema";
 import type { ReviewUnit } from "../review/units";
 import { calculateProgress } from "../review/progress";
 import { getKnowledgeKey } from "../review/progression";
+import type { DailyLimits } from "../review/dailyPlanning";
 
 type Mode = "due" | "vocab" | "grammar" | "topic" | "mix";
 
@@ -18,6 +19,11 @@ interface Props {
     progressionCount?: number;
     database?: ReviewDB;
     refreshRevision?: number;
+    dailyLimits: DailyLimits | null;
+
+    onSaveDailyLimits: (
+        limits: DailyLimits | null
+    ) => boolean;
     onStart: (m: Mode) => void;
     onWrongBook: () => void;
     onPractice: () => void;
@@ -30,15 +36,27 @@ export default function Dashboard({
     units,
     dueReviewCount,
     newUnitCount,
+    dailyLimits,
     progressionCount = 0,
-    onStart, onWrongBook, onPractice, onReset,
-    onExportBackup,
-    database = db, refreshRevision = 0
+    database = db, refreshRevision = 0,
+    onSaveDailyLimits, onStart, onWrongBook, onPractice, onReset, onExportBackup,
 }: Props) {
     const [showResetConfirm, setShowResetConfirm] = useState(false);
 
     const [exporting, setExporting] = useState(false);
     const [exportError, setExportError] = useState("");
+
+    const [showGoalSettings, setShowGoalSettings] =
+        useState(false);
+
+    const [unlimitedDraft, setUnlimitedDraft] =
+        useState(false);
+
+    const [goalDraft, setGoalDraft] = useState({
+        vocab: "20",
+        grammar: "1",
+        topic: "1"
+    });
 
     async function handleExportBackup() {
         if (!onExportBackup || exporting) return;
@@ -61,10 +79,7 @@ export default function Dashboard({
         }
     }
 
-    const [logState, setLogState] = useState<{
-        database: ReviewDB;
-        logs: AnswerLog[];
-    } | null>(null);
+    const [logState, setLogState] = useState<{ database: ReviewDB; logs: AnswerLog[]; } | null>(null);
 
     const logs =
         logState?.database === database
@@ -214,6 +229,57 @@ export default function Dashboard({
         return { x, y, count: d.count, label: d.label };
     });
 
+
+    function openGoalSettings() {
+        setUnlimitedDraft(dailyLimits === null);
+
+        setGoalDraft({
+            vocab: String(dailyLimits?.vocab ?? 20),
+            grammar: String(dailyLimits?.grammar ?? 1),
+            topic: String(dailyLimits?.topic ?? 1)
+        });
+
+        setShowGoalSettings(true);
+    }
+
+    function saveGoalSettings() {
+        if (unlimitedDraft) {
+            if (onSaveDailyLimits(null)) {
+                setShowGoalSettings(false);
+            }
+            return;
+        }
+
+        const parse = (value: string): number | null => {
+            if (!/^\d+$/.test(value.trim())) return null;
+
+            const n = Number(value);
+
+            return Number.isSafeInteger(n) &&
+                n >= 0 &&
+                n <= 1000
+                ? n
+                : null;
+        };
+
+        const vocab = parse(goalDraft.vocab);
+        const grammar = parse(goalDraft.grammar);
+        const topic = parse(goalDraft.topic);
+
+        if (
+            vocab === null ||
+            grammar === null ||
+            topic === null
+        ) {
+            alert("每日目标请输入 0～1000 的整数。");
+            return;
+        }
+
+        if (onSaveDailyLimits({ vocab, grammar, topic })) {
+            setShowGoalSettings(false);
+        }
+    }
+
     return (
         <div className="app">
             <header>
@@ -332,6 +398,110 @@ export default function Dashboard({
                         >
                             定点练习
                         </button>
+
+
+                        <div style={{ marginTop: 14, fontSize: 13 }}>
+                            <p className="text-muted">
+                                {dailyLimits === null
+                                    ? "每日新知识：不限量"
+                                    : `每日目标：${dailyLimits.vocab} 单词 · ${dailyLimits.grammar} 语法 · ${dailyLimits.topic} 对话`}
+                            </p>
+
+                            <button
+                                className="btn secondary"
+                                style={{ marginTop: 8, marginBottom: 0 }}
+                                onClick={openGoalSettings}
+                            >
+                                ⚙️ 设置每日学习目标
+                            </button>
+                        </div>
+
+                        {showGoalSettings && (
+                            <div
+                                style={{
+                                    marginTop: 14,
+                                    padding: 14,
+                                    border: "1px solid #e5e5ea",
+                                    borderRadius: 12
+                                }}
+                            >
+                                <label style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    gap: 8
+                                }}>
+                                    <input
+                                        type="checkbox"
+                                        checked={unlimitedDraft}
+                                        onChange={e =>
+                                            setUnlimitedDraft(e.target.checked)
+                                        }
+                                    />
+                                    不限制每日新知识数量
+                                </label>
+
+                                <div style={{
+                                    display: "grid",
+                                    gridTemplateColumns:
+                                        "repeat(3, minmax(0, 1fr))",
+                                    gap: 8,
+                                    marginTop: 14
+                                }}>
+                                    {([
+                                        ["vocab", "单词"],
+                                        ["grammar", "语法"],
+                                        ["topic", "对话"]
+                                    ] as const).map(([type, label]) => (
+                                        <label key={type}>
+                                            {label}
+                                            <input
+                                                type="number"
+                                                min={0}
+                                                max={1000}
+                                                disabled={unlimitedDraft}
+                                                value={goalDraft[type]}
+                                                onChange={e =>
+                                                    setGoalDraft(prev => ({
+                                                        ...prev,
+                                                        [type]: e.target.value
+                                                    }))
+                                                }
+                                                style={{
+                                                    display: "block",
+                                                    width: "100%",
+                                                    boxSizing: "border-box",
+                                                    marginTop: 6
+                                                }}
+                                            />
+                                        </label>
+                                    ))}
+                                </div>
+
+                                <div style={{
+                                    display: "flex",
+                                    gap: 8,
+                                    marginTop: 14
+                                }}>
+                                    <button
+                                        className="btn"
+                                        onClick={saveGoalSettings}
+                                    >
+                                        保存设置
+                                    </button>
+
+                                    <button
+                                        className="btn secondary"
+                                        onClick={() =>
+                                            setShowGoalSettings(false)
+                                        }
+                                    >
+                                        取消
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+
+
                     </div>
 
                     {/* 2. 学习数据与近七天（左右并排） */}

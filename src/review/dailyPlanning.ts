@@ -19,7 +19,7 @@ export function buildDailyCandidatePools(
     allUnits: ReviewUnit[],
     learnedItems: string[],
     isAnswerable: (unit: ReviewUnit) => boolean,
-    limits: DailyLimits,
+    limits: DailyLimits | null,
     now = Date.now()
 ): DailyCandidatePools {
     const eligible = getEligibleUnits(
@@ -47,6 +47,14 @@ export function buildDailyCandidatePools(
     const freshCandidates = unstarted.filter(
         unit => !knownKeys.has(getKnowledgeKey(unit))
     );
+
+    if (limits === null) {
+        return {
+            due,
+            progression,
+            fresh: freshCandidates
+        };
+    }
 
     const remaining: DailyLimits = {
         vocab: Math.max(
