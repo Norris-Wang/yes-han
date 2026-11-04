@@ -14,7 +14,11 @@ export function genGrammar(
     if (!ex) return null;
 
     const hintPrefix = ex.hint ? `【${ex.hint}】\n` : "";
-    const dictHint = ex.dictionaryForm ? `（${ex.dictionaryForm}）` : "";
+    const dictHint =
+        ex.dictionaryForm &&
+            ex.dictionaryForm.trim() !== ex.answer.trim()
+            ? `（${ex.dictionaryForm}）`
+            : "";
     const blank = `＿＿＿${dictHint}`;
 
     let sentenceWithBlank: string;

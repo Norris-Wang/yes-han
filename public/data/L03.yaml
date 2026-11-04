@@ -92,8 +92,15 @@ lessons:
               word: (친)할아버지,
               meaning: 爷爷,
               tags: [가족],
+              accept: ["할아버지", "친할아버지"],
             }
-          - { id: V-L03-FAM-02, word: (친)할머니, meaning: 奶奶, tags: [가족] }
+          - {
+              id: V-L03-FAM-02,
+              word: (친)할머니,
+              meaning: 奶奶,
+              tags: [가족],
+              accept: ["할머니", "친할머니"],
+            }
           - { id: V-L03-FAM-03, word: 외할아버지, meaning: 外公, tags: [가족] }
           - { id: V-L03-FAM-04, word: 외할머니, meaning: 外婆, tags: [가족] }
           - { id: V-L03-FAM-05, word: 부모, meaning: 父母, tags: [가족] }

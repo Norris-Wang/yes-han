@@ -136,7 +136,12 @@ lessons:
           - { id: V-L02-PLACE-04, word: 서점, meaning: 书店, tags: [장소] }
           - { id: V-L02-PLACE-05, word: 우체국, meaning: 邮局, tags: [장소] }
           - { id: V-L02-PLACE-06, word: 사무실, meaning: 办公室, tags: [장소] }
-          - { id: V-L02-PLACE-07, word: 백화점, meaning: 百货商店, tags: [장소] }
+          - {
+              id: V-L02-PLACE-07,
+              word: 백화점,
+              meaning: 百货商店,
+              tags: [장소],
+            }
           - { id: V-L02-PLACE-08, word: 극장, meaning: 剧场, tags: [장소] }
           - { id: V-L02-PLACE-09, word: 병원, meaning: 医院, tags: [장소] }
           - { id: V-L02-PLACE-10, word: 약국, meaning: 药店, tags: [장소] }
@@ -153,7 +158,13 @@ lessons:
           - { id: V-L02-POS-02, word: 뒤, meaning: 后, tags: [위치] }
           - { id: V-L02-POS-03, word: 옆, meaning: 旁边, tags: [위치] }
           - { id: V-L02-POS-04, word: 위, meaning: 上, tags: [위치] }
-          - { id: V-L02-POS-05, word: 밑/아래, meaning: 下, tags: [위치], accept: ["밑", "아래"] }
+          - {
+              id: V-L02-POS-05,
+              word: 밑/아래,
+              meaning: 下,
+              tags: [위치],
+              accept: ["밑", "아래"],
+            }
           - { id: V-L02-POS-06, word: 안, meaning: 里, tags: [위치] }
           - { id: V-L02-POS-07, word: 밖, meaning: 外, tags: [위치] }
 
@@ -162,48 +173,200 @@ lessons:
         name: 이/가
         function: 主格助词，用于体词后表示主语。注意人称代词 나, 너, 저 及疑问代词 누구 与 가 结合时发生变形
         examples:
-          - { sentence: "이것이 책상입니다.", translation: "这是书桌。", focus: "이", cloze: "이것{이} 책상입니다.", answer: "이", dictionaryForm: "이/가", choices: ["가", "은", "는"], hint: "主语" }
-          - { sentence: "여기가 학교입니다.", translation: "这里是学校。", focus: "가", answer: "가", dictionaryForm: "이/가", choices: ["이", "은", "는"], hint: "主语" }
-          - { sentence: "친구가 많습니다.", translation: "朋友很多。", focus: "가", answer: "가", dictionaryForm: "이/가", choices: ["이", "은", "는"], hint: "主语" }
-          - { sentence: "내가 말했습니다.", translation: "我说了。", focus: "내가", answer: "내가", dictionaryForm: "나+가", choices: ["나가", "저가", "너가"], hint: "特殊变形" }
-          - { sentence: "누가 왔습니까?", translation: "谁来了？", focus: "누가", answer: "누가", dictionaryForm: "누구+가", choices: ["누구가", "누구이", "누가가"], hint: "特殊变形" }
+          - {
+              sentence: "이것이 책상입니다.",
+              translation: "这是书桌。",
+              focus: "이",
+              cloze: "이것{이} 책상입니다.",
+              answer: "이",
+              dictionaryForm: "이/가",
+              choices: ["가", "은", "는"],
+              hint: "主语",
+            }
+          - {
+              sentence: "여기가 학교입니다.",
+              translation: "这里是学校。",
+              focus: "가",
+              answer: "가",
+              dictionaryForm: "이/가",
+              choices: ["이", "은", "는"],
+              hint: "主语",
+            }
+          - {
+              sentence: "친구가 많습니다.",
+              translation: "朋友很多。",
+              focus: "가",
+              answer: "가",
+              dictionaryForm: "이/가",
+              choices: ["이", "은", "는"],
+              hint: "主语",
+            }
+          - {
+              sentence: "내가 말했습니다.",
+              translation: "我说了。",
+              focus: "내가",
+              answer: "내가",
+              dictionaryForm: "나+가",
+              choices: ["나가", "저가", "너가"],
+              hint: "特殊变形",
+            }
+          - {
+              sentence: "누가 왔습니까?",
+              translation: "谁来了？",
+              focus: "누가",
+              answer: "누가",
+              dictionaryForm: "누구+가",
+              choices: ["누구가", "누구이", "누가가"],
+              hint: "特殊变形",
+            }
 
       - id: G-L02-02
         name: 이/그/저
         function: 이 表示离说话人近的事物。그 表示离说话人远但离听话人近的事物或之前提过的事物。저 表示离说话人和听话人都远的事物。
         examples:
-          - { sentence: "이것은 책입니다.", translation: "这是书。", focus: "이것", answer: "이것", dictionaryForm: "이/그/저", choices: ["그것", "저것", "무엇"], hint: "离说话人近" }
-          - { sentence: "그것은 연필입니다.", translation: "那是铅笔。", focus: "그것", answer: "그것", dictionaryForm: "이/그/저", choices: ["이것", "저것", "무엇"], hint: "离听话人近" }
-          - { sentence: "저것은 교과서입니다.", translation: "那是教科书。", focus: "저것", answer: "저것", dictionaryForm: "이/그/저", choices: ["이것", "그것", "무엇"], hint: "离双方都远" }
+          - {
+              sentence: "이것은 책입니다.",
+              translation: "这是书。",
+              focus: "이것",
+              answer: "이것",
+              dictionaryForm: "이/그/저",
+              choices: ["그것", "저것", "무엇"],
+              hint: "离说话人近",
+            }
+          - {
+              sentence: "그것은 연필입니다.",
+              translation: "那是铅笔。",
+              focus: "그것",
+              answer: "그것",
+              dictionaryForm: "이/그/저",
+              choices: ["이것", "저것", "무엇"],
+              hint: "离听话人近",
+            }
+          - {
+              sentence: "저것은 교과서입니다.",
+              translation: "那是教科书。",
+              focus: "저것",
+              answer: "저것",
+              dictionaryForm: "이/그/저",
+              choices: ["이것", "그것", "무엇"],
+              hint: "离双方都远",
+            }
 
       - id: G-L02-03
         name: 도
         function: 补助词，表示“也”。与主宾格助词连用时，主宾格助词省略：与 에, 에서 连用表示场所或位置时，不省略
         examples:
-          - { sentence: "그림도 많습니다.", translation: "画也很多。", focus: "도", answer: "도", dictionaryForm: "도", choices: ["이", "가", "는"], hint: "也" }
-          - { sentence: "집에서도 공부합니다.", translation: "在家也学习。", focus: "도", answer: "도", dictionaryForm: "도", choices: ["에", "에서", "는"], hint: "也" }
-          - { sentence: "바나나도 갑니다.", translation: "香蕉也去。", focus: "도", answer: "도", dictionaryForm: "도", choices: ["이", "가", "는"], hint: "也" }
+          - {
+              sentence: "그림도 많습니다.",
+              translation: "画也很多。",
+              focus: "도",
+              answer: "도",
+              choices: ["이", "가", "는"],
+              hint: "也",
+            }
+          - {
+              sentence: "집에서도 공부합니다.",
+              translation: "在家也学习。",
+              focus: "도",
+              answer: "도",
+              choices: ["에", "에서", "는"],
+              hint: "也",
+            }
+          - {
+              sentence: "바다에도 갑니다.",
+              translation: "海边也去。",
+              focus: "도",
+              answer: "도",
+              choices: ["이", "가", "는"],
+              hint: "也",
+            }
 
       - id: G-L02-04
         name: 있다/없다
         function: 表示有/没有，在/不在。敬语形式为 계시다
         examples:
-          - { sentence: "질문이 있습니까?", translation: "有问题吗？", focus: "있습니까", answer: "있습니까", dictionaryForm: "있다", choices: ["있습니다", "없습니까", "있었습니다"], hint: "있다/없다" }
-          - { sentence: "돈이 없습니까?", translation: "没有钱吗？", focus: "없습니까", answer: "없습니까", dictionaryForm: "없다", choices: ["없습니다", "있습니까", "없었습니다"], hint: "있다/없다" }
-          - { sentence: "선생님이 계십니다.", translation: "老师在。", focus: "계십니다", answer: "계십니다", dictionaryForm: "계시다", choices: ["있습니다", "없습니다", "계십니까"], hint: "敬语" }
+          - {
+              sentence: "질문이 있습니까?",
+              translation: "有问题吗？",
+              focus: "있습니까",
+              answer: "있습니까",
+              dictionaryForm: "있다",
+              choices: ["있습니다", "없습니까", "있었습니다"],
+              hint: "있다/없다",
+            }
+          - {
+              sentence: "돈이 없습니까?",
+              translation: "没有钱吗？",
+              focus: "없습니까",
+              answer: "없습니까",
+              dictionaryForm: "없다",
+              choices: ["없습니다", "있습니까", "없었습니다"],
+              hint: "있다/없다",
+            }
+          - {
+              sentence: "선생님이 계십니다.",
+              translation: "老师在。",
+              focus: "계십니다",
+              answer: "계십니다",
+              dictionaryForm: "계시다",
+              choices: ["있습니다", "없습니다", "계십니까"],
+              hint: "敬语",
+            }
 
       - id: G-L02-05
         name: 에
         function: 副词格助词，表示主体的存在处所，通常和 있다, 없다 连用
         examples:
-          - { sentence: "친구가 미국에 있습니다.", translation: "朋友在美国。", focus: "에", answer: "에", dictionaryForm: "에", choices: ["에서", "도", "하고"], hint: "存在处所" }
-          - { sentence: "교실에 텔레비전이 없습니다.", translation: "教室里没有电视。", focus: "에", answer: "에", dictionaryForm: "에", choices: ["에서", "도", "하고"], hint: "存在处所" }
-          - { sentence: "고양이가 방에 없습니다.", translation: "猫不在房间里。", focus: "에", answer: "에", dictionaryForm: "에", choices: ["에서", "도", "하고"], hint: "存在处所" }
+          - {
+              sentence: "친구가 미국에 있습니다.",
+              translation: "朋友在美国。",
+              focus: "에",
+              answer: "에",
+              choices: ["에서", "도", "하고"],
+              hint: "存在处所",
+            }
+          - {
+              sentence: "교실에 텔레비전이 없습니다.",
+              translation: "教室里没有电视。",
+              focus: "에",
+              answer: "에",
+              choices: ["에서", "도", "하고"],
+              hint: "存在处所",
+            }
+          - {
+              sentence: "고양이가 방에 없습니다.",
+              translation: "猫不在房间里。",
+              focus: "에",
+              answer: "에",
+              choices: ["에서", "도", "하고"],
+              hint: "存在处所",
+            }
 
       - id: G-L02-06
         name: 하고
         function: 连接两个及以上的体词，意思和 그리고 相近
         examples:
-          - { sentence: "책하고 공책이 있습니다.", translation: "有书和笔记本。", focus: "하고", answer: "하고", dictionaryForm: "하고", choices: ["에", "도", "에서"], hint: "和" }
-          - { sentence: "빵하고 김밥을 먹습니다.", translation: "吃面包和紫菜包饭。", focus: "하고", answer: "하고", dictionaryForm: "하고", choices: ["에", "도", "에서"], hint: "和" }
-          - { sentence: "가방하고 구두를 삽니다.", translation: "买包和皮鞋。", focus: "하고", answer: "하고", dictionaryForm: "하고", choices: ["에", "도", "에서"], hint: "和" }
+          - {
+              sentence: "책하고 공책이 있습니다.",
+              translation: "有书和笔记本。",
+              focus: "하고",
+              answer: "하고",
+              choices: ["에", "도", "에서"],
+              hint: "和",
+            }
+          - {
+              sentence: "빵하고 김밥을 먹습니다.",
+              translation: "吃面包和紫菜包饭。",
+              focus: "하고",
+              answer: "하고",
+              choices: ["에", "도", "에서"],
+              hint: "和",
+            }
+          - {
+              sentence: "가방하고 구두를 삽니다.",
+              translation: "买包和皮鞋。",
+              focus: "하고",
+              answer: "하고",
+              choices: ["에", "도", "에서"],
+              hint: "和",
+            }
