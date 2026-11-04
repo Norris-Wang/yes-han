@@ -354,6 +354,7 @@ lessons:
               translation: "有书和笔记本。",
               focus: "하고",
               answer: "하고",
+              accept: ["과", "이랑"],
               choices: ["에", "도", "에서"],
               hint: "和",
             }
@@ -362,6 +363,7 @@ lessons:
               translation: "吃面包和紫菜包饭。",
               focus: "하고",
               answer: "하고",
+              accept: ["과", "이랑"],
               choices: ["에", "도", "에서"],
               hint: "和",
             }
@@ -370,6 +372,7 @@ lessons:
               translation: "买包和皮鞋。",
               focus: "하고",
               answer: "하고",
+              accept: ["과", "이랑"],
               choices: ["에", "도", "에서"],
               hint: "和",
             }
