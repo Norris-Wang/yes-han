@@ -197,15 +197,17 @@ lessons:
               choices: ["은", "이", "가"],
             }
           - {
-              sentence: "동생은 키가 큽니다.",
-              translation: "弟弟个子高。",
+              sentence: "동생은 키가 큽니다. 저는 키가 작습니다.",
+              translation: "弟弟个子高，而我个子矮。",
+              cloze: "동생{은} 키가 큽니다. 저는 키가 작습니다.",
               focus: "은",
               answer: "은",
               choices: ["는", "이", "가"],
             }
           - {
-              sentence: "생선은 싫어합니다.",
-              translation: "不喜欢鱼。",
+              sentence: "고기를 좋아합니다. 생선은 싫어합니다.",
+              translation: "喜欢肉，但不喜欢鱼。",
+              cloze: "고기를 좋아합니다. 생선{은} 싫어합니다.",
               focus: "은",
               answer: "은",
               choices: ["는", "이", "가"],

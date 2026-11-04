@@ -257,24 +257,27 @@ lessons:
         function: 补助词，表示“也”。与主宾格助词连用时，主宾格助词省略：与 에, 에서 连用表示场所或位置时，不省略
         examples:
           - {
-              sentence: "그림도 많습니다.",
-              translation: "画也很多。",
+              sentence: "책이 많습니다. 그림도 많습니다.",
+              translation: "书很多，画也很多。",
+              cloze: "책이 많습니다. 그림{도} 많습니다.",
               focus: "도",
               answer: "도",
               choices: ["이", "가", "는"],
               hint: "也",
             }
           - {
-              sentence: "집에서도 공부합니다.",
-              translation: "在家也学习。",
+              sentence: "도서관에서 공부합니다. 집에서도 공부합니다.",
+              translation: "在图书馆学习，在家也学习。",
+              cloze: "도서관에서 공부합니다. 집에서{도} 공부합니다.",
               focus: "도",
               answer: "도",
               choices: ["에", "에서", "는"],
               hint: "也",
             }
           - {
-              sentence: "바다에도 갑니다.",
-              translation: "海边也去。",
+              sentence: "산에 갑니다. 바다에도 갑니다.",
+              translation: "去山上，也去海边。",
+              cloze: "산에 갑니다. 바다에{도} 갑니다.",
               focus: "도",
               answer: "도",
               choices: ["이", "가", "는"],
