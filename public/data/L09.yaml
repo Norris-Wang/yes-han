@@ -1,0 +1,793 @@
+version: "1.0"
+lessons:
+  - id: L09
+    title: 제9과 날씨와 계절
+    order: 9
+    topics:
+      - id: T-L09-01
+        title: 저는 스키를 탈 수 있는 겨울이 좋아요
+        turns:
+          - speaker: 미선
+            text: 저는 봄을 좋아하는데 제임스 씨는 어떤 계절을 좋아하세요?
+            translation: 我喜欢春天，詹姆斯先生喜欢哪个季节呢？
+          - speaker: 제임스
+            text: 저는 스키를 탈 수 있는 겨울이 좋아요.
+            translation: 我喜欢能够滑雪的冬天。
+          - speaker: 미선
+            text: 스키를 좋아하세요?
+            translation: 您喜欢滑雪吗？
+          - speaker: 제임스
+            text: 네, 겨울이 되면 스키장에 자주 가요.
+            translation: 是的，一到冬天我就经常去滑雪场。
+          - speaker: 미선
+            text: 그럼 이번 겨울에는 같이 스키장에 갈까요?
+            translation: 那今年冬天一起去滑雪场好吗？
+          - speaker: 제임스
+            text: 아, 그럼 좋은 생각이에요.
+            translation: 啊，那是个好主意。
+      - id: T-L09-02
+        title: 날씨가 조금 흐린데요
+        turns:
+          - speaker: 미선
+            text: 오늘 날씨가 좀 흐린데요.
+            translation: 今天天气有点阴。
+          - speaker: 제임스
+            text: 네, 하늘에 구름이 좀 꼈어요.
+            translation: 是的，天上有些云。
+          - speaker: 미선
+            text: 바람도 좀 부는데요.
+            translation: 风也有点大呢。
+          - speaker: 제임스
+            text: 아마 저녁에는 비가 올 거예요.
+            translation: 晚上大概会下雨。
+          - speaker: 미선
+            text: 비가 온 후에는 날씨가 맑겠지요?
+            translation: 下过雨后天气会放晴吧？
+          - speaker: 제임스
+            text: 네, 내일은 맑을 거예요.
+            translation: 嗯，明天会晴的。
+      - id: T-L09-03
+        title: 오늘보다 따뜻할 것 같아요
+        turns:
+          - speaker: 제임스
+            text: 내일은 날씨가 어떨까요?
+            translation: 明天天气会怎么样呢？
+          - speaker: 미선
+            text: 오늘보다 따뜻할 것 같아요.
+            translation: 我觉得会比今天暖和。
+          - speaker: 제임스
+            text: 미선 씨 고향은 겨울에 날씨가 어때요?
+            translation: 美善，你家乡冬天的天气怎么样？
+          - speaker: 미선
+            text: 남쪽이니까 서울보다 따뜻해요.
+            translation: 因为在南方，所以比首尔暖和。
+          - speaker: 제임스
+            text: 여름에는 날씨가 어때요? 더워요?
+            translation: 那夏天天气怎么样？热吗？
+          - speaker: 미선
+            text: 네, 덥고 비가 많이 와요.
+            translation: 是的，很热，而且雨下得很多。
+      - id: T-L09-04
+        title: 저기에서 사람들이 운동을 하고 있어요
+        turns:
+          - speaker: 제임스
+            text: 봄이 되니까 산책하는 사람이 많군요.
+            translation: 春天到了，散步的人真多啊。
+          - speaker: 미선
+            text: 저기에서 사람들이 운동을 하고 있어요.
+            translation: 那边有人正在运动。
+          - speaker: 제임스
+            text: 미선 씨는 무슨 운동을 자주 하세요?
+            translation: 美善，你经常做什么运动？
+          - speaker: 미선
+            text: 봄에는 등산을 하고 여름에는 수영을 해요.
+            translation: 春天爬山，夏天游泳。
+          - speaker: 제임스
+            text: 한국 사람들은 등산을 참 좋아하는 것 같아요.
+            translation: 韩国人好像真的很喜欢登山。
+          - speaker: 미선
+            text: 산이 많아서 그럴 거예요.
+            translation: 大概是因为山多吧。
+    vocabGroups:
+      - id: VG-L09-SEASON
+        name: 계절（季节）
+        kind: noun
+        items:
+          - id: V-L09-SEASON-01
+            word: 계절
+            meaning: 季节
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-02
+            word: 봄
+            meaning: 春天
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-03
+            word: 딸기
+            meaning: 草莓
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-04
+            word: 진달래
+            meaning: 杜鹃花
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-05
+            word: 개나리
+            meaning: 迎春花
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-06
+            word: 여름
+            meaning: 夏天
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-07
+            word: 수박
+            meaning: 西瓜
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-08
+            word: 휴가
+            meaning: 休假
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-09
+            word: 방학
+            meaning: 学校假期
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-10
+            word: 가을
+            meaning: 秋天
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-11
+            word: 감
+            meaning: 柿子
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-12
+            word: 단풍
+            meaning: 红叶
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-13
+            word: 겨울
+            meaning: 冬天
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-14
+            word: 귤
+            meaning: 橘子
+            tags:
+              - 계절（季节）
+          - id: V-L09-SEASON-15
+            word: 눈사람
+            meaning: 雪人
+            tags:
+              - 계절（季节）
+      - id: VG-L09-WEATHER
+        name: 날씨（天气）
+        kind: phrase
+        items:
+          - id: V-L09-WEATHER-01
+            word: 흐리다
+            meaning: 阴沉；多云
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-02
+            word: 개다
+            meaning: 转晴
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-03
+            word: 맑다
+            meaning: 晴朗
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-04
+            word: 구름이 끼다
+            meaning: 多云；布满云
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-05
+            word: 안개가 끼다
+            meaning: 起雾
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-06
+            word: 비가 오다
+            meaning: 下雨
+            tags:
+              - 날씨（天气）
+            accept:
+              - 비가 내리다
+          - id: V-L09-WEATHER-07
+            word: 비가 그치다
+            meaning: 雨停
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-08
+            word: 눈이 오다
+            meaning: 下雪
+            tags:
+              - 날씨（天气）
+            accept:
+              - 눈이 내리다
+          - id: V-L09-WEATHER-09
+            word: 눈이 그치다
+            meaning: 雪停
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-10
+            word: 바람이 불다
+            meaning: 刮风
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-11
+            word: 바람이 강하다
+            meaning: 风大
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-12
+            word: 바람이 약하다
+            meaning: 风小
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-13
+            word: 덥다
+            meaning: 热
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-14
+            word: 따뜻하다
+            meaning: 暖和
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-15
+            word: 선선하다
+            meaning: 凉爽（微凉）
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-16
+            word: 쌀쌀하다
+            meaning: 凉飕飕
+            tags:
+              - 날씨（天气）
+          - id: V-L09-WEATHER-17
+            word: 춥다
+            meaning: 冷
+            tags:
+              - 날씨（天气）
+      - id: VG-L09-ACTIVITY
+        name: 계절 활동（季节活动）
+        kind: phrase
+        items:
+          - id: V-L09-ACTIVITY-01
+            word: 소풍을 가다
+            meaning: 去郊游
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-02
+            word: 꽃구경을 가다
+            meaning: 去赏花
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-03
+            word: 피서를 가다
+            meaning: 去避暑
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-04
+            word: 해수욕장
+            meaning: 海滨浴场
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-05
+            word: 야영을 하다
+            meaning: 露营
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-06
+            word: 독서하다
+            meaning: 读书（阅读）
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-07
+            word: 단풍 구경을 가다
+            meaning: 去赏红叶
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-08
+            word: 눈사람을 만들다
+            meaning: 堆雪人
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-09
+            word: 눈싸움을 하다
+            meaning: 打雪仗
+            tags:
+              - 계절 활동（季节活动）
+          - id: V-L09-ACTIVITY-10
+            word: 스키를 타다
+            meaning: 滑雪
+            tags:
+              - 계절 활동（季节活动）
+    grammars:
+      - id: G-L09-01
+        name: 는데, 은데/ㄴ데
+        function: 连接词尾，表示对立、转折，用于谓词词干和体词谓词形后。动词词干后用“는데”，形容词词干后用“은데/ㄴ데”，体词谓词形后用“ㄴ데”。“있다/없다”结尾的词用“는데”。
+        examples:
+          - sentence: 저는 농구를 좋아하는데 친구들은 야구를 좋아합니다.
+            translation: 我喜欢篮球，而朋友们喜欢棒球。
+            focus: 좋아하는데
+            cloze: 저는 농구를 {좋아하는데} 친구들은 야구를 좋아합니다.
+            answer: 좋아하는데
+            choices:
+              - 좋아하은데
+              - 좋아한데
+              - 좋아합데
+            dictionaryForm: 좋아하다
+            hint: 背景与对比
+          - sentence: 서울은 복잡한데 여기는 그렇지 않군요.
+            translation: 首尔很拥挤，而这里并非如此。
+            focus: 복잡한데
+            cloze: 서울은 {복잡한데} 여기는 그렇지 않군요.
+            answer: 복잡한데
+            choices:
+              - 복잡는데
+              - 복잡은데
+              - 복잡데
+            dictionaryForm: 복잡하다
+            hint: 对比
+          - sentence: 저는 영화를 보고 싶은데 친구들은 연극을 보고 싶어해요.
+            translation: 我想看电影，朋友们却想看话剧。
+            focus: 싶은데
+            cloze: 저는 영화를 보고 {싶은데} 친구들은 연극을 보고 싶어해요.
+            answer: 싶은데
+            choices:
+              - 싶는데
+              - 싶ㄴ데
+              - 싶데
+            dictionaryForm: 싶다
+            hint: 对比
+          - sentence: 내일 시험을 보는데 공부하기가 싫어요.
+            translation: 明天有考试，可我不想学习。
+            focus: 보는데
+            cloze: 내일 시험을 {보는데} 공부하기가 싫어요.
+            answer: 보는데
+            choices:
+              - 보은데
+              - 보ㄴ데
+              - 보데
+            dictionaryForm: 보다
+            hint: 背景与转折
+          - sentence: 친구는 많은데 이야기할 사람이 없어요.
+            translation: 朋友很多，却没有人可以倾诉。
+            focus: 많은데
+            cloze: 친구는 {많은데} 이야기할 사람이 없어요.
+            answer: 많은데
+            choices:
+              - 많는데
+              - 많ㄴ데
+              - 많데
+            dictionaryForm: 많다
+            hint: 对比
+      - id: G-L09-02
+        name: 을/ㄹ 수 있다
+        function: 表示有做某事的能力或有某种可能性，与谓词词干和体词谓词形连用。
+        examples:
+          - sentence: 나도 한국말을 할 수 있습니다.
+            translation: 我也会说韩语。
+            focus: 할 수 있습니다
+            cloze: 나도 한국말을 {할 수 있습니다}.
+            answer: 할 수 있습니다
+            choices:
+              - 하는 수 있습니다
+              - 한 수 있습니다
+              - 할 수 입니까
+            dictionaryForm: 하다
+            hint: 能力
+          - sentence: 내일은 한가하니까 갈 수 있어요.
+            translation: 明天有空，所以可以去。
+            focus: 갈 수 있어요
+            cloze: 내일은 한가하니까 {갈 수 있어요}.
+            answer: 갈 수 있어요
+            choices:
+              - 가는 수 있어요
+              - 간 수 있어요
+              - 갈 수 입니다
+            dictionaryForm: 가다
+            hint: 可能性
+          - sentence: 여기서 좌회전을 할 수 있습니까?
+            translation: 能在这里左转吗？
+            focus: 할 수 있습니까
+            cloze: 여기서 좌회전을 {할 수 있습니까}?
+            answer: 할 수 있습니까
+            choices:
+              - 한 수 있습니까
+              - 하는 수 있습니까
+              - 할 수 입니까
+            dictionaryForm: 하다
+            hint: 能力·疑问
+          - sentence: 한국 신문은 어려워서 읽을 수 없습니다.
+            translation: 韩国报纸很难，所以读不懂。
+            focus: 읽을 수 없습니다
+            cloze: 한국 신문은 어려워서 {읽을 수 없습니다}.
+            answer: 읽을 수 없습니다
+            choices:
+              - 읽는 수 없습니다
+              - 읽은 수 없습니다
+              - 읽을 수 아닙니다
+            dictionaryForm: 읽다
+            hint: 不能
+          - sentence: 길이 복잡해서 운전할 수 없습니다.
+            translation: 道路太复杂，无法开车。
+            focus: 운전할 수 없습니다
+            cloze: 길이 복잡해서 {운전할 수 없습니다}.
+            answer: 운전할 수 없습니다
+            choices:
+              - 운전한 수 없습니다
+              - 운전하는 수 없습니다
+              - 운전할 수 아닙니다
+            dictionaryForm: 운전하다
+            hint: 不能
+      - id: G-L09-03
+        name: (은/ㄴ) 후에
+        function: 表示“之后”，用于动词词干或体词后。动词后加“은/ㄴ”，体词后不加。
+        examples:
+          - sentence: 식사한 후에 차를 마십니다.
+            translation: 吃过饭以后喝茶。
+            focus: 식사한 후에
+            cloze: "{식사한 후에} 차를 마십니다."
+            answer: 식사한 후에
+            choices:
+              - 식사하는 후에
+              - 식사할 후에
+              - 식사하은 후에
+            dictionaryForm: 식사하다
+            hint: 动作之后
+          - sentence: 내 말을 들은 후에 질문하세요.
+            translation: 听完我说的话再提问。
+            focus: 들은 후에
+            cloze: 내 말을 {들은 후에} 질문하세요.
+            answer: 들은 후에
+            choices:
+              - 듣은 후에
+              - 들는 후에
+              - 듣는 후에
+            dictionaryForm: 듣다
+            hint: 动作之后
+          - sentence: 학교를 졸업한 후에 뭘 하시겠어요?
+            translation: 学校毕业后您打算做什么？
+            focus: 졸업한 후에
+            cloze: 학교를 {졸업한 후에} 뭘 하시겠어요?
+            answer: 졸업한 후에
+            choices:
+              - 졸업하는 후에
+              - 졸업하은 후에
+              - 졸업할 후에
+            dictionaryForm: 졸업하다
+            hint: 动作之后
+          - sentence: 30분 후에 다시 걸겠습니다.
+            translation: 三十分钟后再打电话。
+            focus: 후에
+            cloze: 30분 {후에} 다시 걸겠습니다.
+            answer: 후에
+            choices:
+              - 후를
+              - 후가
+              - 후에서
+            hint: 时间之后
+          - sentence: 퇴근 후에 한잔합니다.
+            translation: 下班后喝一杯。
+            focus: 후에
+            cloze: 퇴근 {후에} 한잔합니다.
+            answer: 후에
+            choices:
+              - 후를
+              - 후가
+              - 후에서
+            hint: 时间之后
+          - sentence: 일 년 후에 결혼하겠어요.
+            translation: 一年后打算结婚。
+            focus: 후에
+            cloze: 일 년 {후에} 결혼하겠어요.
+            answer: 후에
+            choices:
+              - 후를
+              - 후가
+              - 후에서
+            hint: 时间之后
+      - id: G-L09-04
+        name: -겠-
+        function: 表示推测，用于谓词词干和体词谓词形后。
+        examples:
+          - sentence: 제목을 보니까 이 영화가 재미있겠어요.
+            translation: 看标题，这部电影应该很有趣。
+            focus: 재미있겠어요
+            cloze: 제목을 보니까 이 영화가 {재미있겠어요}.
+            answer: 재미있겠어요
+            choices:
+              - 재미있겄어요
+              - 재미있는겠어요
+              - 재미있겠은요
+            dictionaryForm: 재미있다
+            hint: 推测
+          - sentence: 주말이라서 교통이 복잡하겠어요.
+            translation: 因为是周末，交通应该很拥挤。
+            focus: 복잡하겠어요
+            cloze: 주말이라서 교통이 {복잡하겠어요}.
+            answer: 복잡하겠어요
+            choices:
+              - 복잡겠어요
+              - 복잡하겄어요
+              - 복잡하겠은요
+            dictionaryForm: 복잡하다
+            hint: 推测
+          - sentence: 일이 많아서 금방 끝내기가 힘들겠어요.
+            translation: 事情很多，恐怕很难马上做完。
+            focus: 힘들겠어요
+            cloze: 일이 많아서 금방 끝내기가 {힘들겠어요}.
+            answer: 힘들겠어요
+            choices:
+              - 힘들겄어요
+              - 힘드는겠어요
+              - 힘들겠은요
+            dictionaryForm: 힘들다
+            hint: 推测
+          - sentence: 피아노를 잘 치니까 훌륭한 음악가가 되겠어요.
+            translation: 钢琴弹得好，将来会成为优秀的音乐家吧。
+            focus: 되겠어요
+            cloze: 피아노를 잘 치니까 훌륭한 음악가가 {되겠어요}.
+            answer: 되겠어요
+            choices:
+              - 되겄어요
+              - 되기는겠어요
+              - 되겠은요
+            dictionaryForm: 되다
+            hint: 推测
+          - sentence: 하늘을 보니까 오후에는 비가 오겠어요.
+            translation: 看看天空，下午可能会下雨。
+            focus: 오겠어요
+            cloze: 하늘을 보니까 오후에는 비가 {오겠어요}.
+            answer: 오겠어요
+            choices:
+              - 오겄어요
+              - 오는겠어요
+              - 오겠은요
+            dictionaryForm: 오다
+            hint: 天气推测
+      - id: G-L09-05
+        name: 보다
+        function: 表示“比”，和体词连用。“보다”前是被比较的对象。
+        examples:
+          - sentence: 언니가 동생보다 커요.
+            translation: 姐姐比弟弟高。
+            focus: 보다
+            cloze: 언니가 동생{보다} 커요.
+            answer: 보다
+            choices:
+              - 처럼
+              - 만큼
+              - 하고
+            hint: 比较
+          - sentence: 한국말이 영어보다 더 어려워요.
+            translation: 韩语比英语更难。
+            focus: 보다
+            cloze: 한국말이 영어{보다} 더 어려워요.
+            answer: 보다
+            choices:
+              - 처럼
+              - 만큼
+              - 하고
+            hint: 比较
+          - sentence: 어제보다 오늘이 더 추워요.
+            translation: 今天比昨天更冷。
+            focus: 보다
+            cloze: 어제{보다} 오늘이 더 추워요.
+            answer: 보다
+            choices:
+              - 처럼
+              - 만큼
+              - 하고
+            hint: 比较
+          - sentence: 저는 불고기보다 갈비를 더 좋아해요.
+            translation: 比起烤牛肉，我更喜欢排骨。
+            focus: 보다
+            cloze: 저는 불고기{보다} 갈비를 더 좋아해요.
+            answer: 보다
+            choices:
+              - 처럼
+              - 만큼
+              - 하고
+            hint: 比较
+          - sentence: 지하철이 버스보다 더 빨라요.
+            translation: 地铁比公交车更快。
+            focus: 보다
+            cloze: 지하철이 버스{보다} 더 빨라요.
+            answer: 보다
+            choices:
+              - 처럼
+              - 만큼
+              - 하고
+            hint: 比较
+      - id: G-L09-06
+        name: -을/ㄹ 것 같다
+        function: 表示对将来的推测，用于谓词词干后。正在进行的动作用“-는 것 같다”，已完成的动作用“-ㄴ/은 것 같다”。
+        examples:
+          - sentence: 저는 배가 고파서 많이 먹을 것 같아요.
+            translation: 我很饿，感觉会吃很多。
+            focus: 먹을 것 같아요
+            cloze: 저는 배가 고파서 많이 {먹을 것 같아요}.
+            answer: 먹을 것 같아요
+            choices:
+              - 먹는을 것 같아요
+              - 먹은을 것 같아요
+              - 먹어을 것 같아요
+            dictionaryForm: 먹다
+            hint: 将来推测
+          - sentence: 곧 비가 올 것 같아요.
+            translation: 好像马上要下雨了。
+            focus: 올 것 같아요
+            cloze: 곧 비가 {올 것 같아요}.
+            answer: 올 것 같아요
+            choices:
+              - 오는을 것 같아요
+              - 오은 것 같아요
+              - 오을 것 같아요
+            dictionaryForm: 오다
+            hint: 将来推测
+          - sentence: 미선 씨는 목소리가 예뻐서 노래를 잘 부를 것 같아요.
+            translation: 美善声音很好听，应该很会唱歌。
+            focus: 부를 것 같아요
+            cloze: 미선 씨는 목소리가 예뻐서 노래를 잘 {부를 것 같아요}.
+            answer: 부를 것 같아요
+            choices:
+              - 부르을 것 같아요
+              - 부르는을 것 같아요
+              - 부르를 것 같아요
+            dictionaryForm: 부르다
+            hint: 将来推测
+          - sentence: 이 음식은 너무 매울 것 같아요.
+            translation: 这道菜好像会很辣。
+            focus: 매울 것 같아요
+            cloze: 이 음식은 너무 {매울 것 같아요}.
+            answer: 매울 것 같아요
+            choices:
+              - 맵을 것 같아요
+              - 매우을 것 같아요
+              - 매운을 것 같아요
+            dictionaryForm: 맵다
+            hint: 将来推测
+          - sentence: 이번 시험이 어려울 것 같아요.
+            translation: 这次考试好像会很难。
+            focus: 어려울 것 같아요
+            cloze: 이번 시험이 {어려울 것 같아요}.
+            answer: 어려울 것 같아요
+            choices:
+              - 어렵을 것 같아요
+              - 어려운을 것 같아요
+              - 어려워을 것 같아요
+            dictionaryForm: 어렵다
+            hint: 将来推测
+      - id: G-L09-07
+        name: -는군요/군요
+        function: 终结词尾，表示感叹、评价或判断，用于谓词词干和体词谓词形后。动词词干后用“-는군요”，形容词词干和体词谓词形后用“-군요”，“-었/았/했-”和“-겠-”后用“-군요-”。
+        examples:
+          - sentence: 매운 음식을 잘 잡수시는군요.
+            translation: 您真能吃辣呀。
+            focus: 잡수시는군요
+            cloze: 매운 음식을 잘 {잡수시는군요}.
+            answer: 잡수시는군요
+            choices:
+              - 잡수시군요
+              - 잡수시은군요
+              - 잡수시으군요
+            dictionaryForm: 잡수시다
+            hint: 发现·感叹
+          - sentence: 아, 저분이 영수 씨 아버님이시군요.
+            translation: 啊，原来那位是英洙的父亲。
+            focus: 이시군요
+            cloze: 아, 저분이 영수 씨 아버님{이시군요}.
+            answer: 이시군요
+            choices:
+              - 이시는군요
+              - 이시은군요
+              - 이시는군
+            dictionaryForm: 이다
+            hint: 发现·感叹
+          - sentence: 이 방이 참 넓군요.
+            translation: 这间屋子真宽敞啊。
+            focus: 넓군요
+            cloze: 이 방이 참 {넓군요}.
+            answer: 넓군요
+            choices:
+              - 넓는군요
+              - 넓은군요
+              - 넓은는군요
+            dictionaryForm: 넓다
+            hint: 感叹
+          - sentence: 미선 씨가 어머님을 닮았군요.
+            translation: 美善长得像妈妈啊。
+            focus: 닮았군요
+            cloze: 미선 씨가 어머님을 {닮았군요}.
+            answer: 닮았군요
+            choices:
+              - 닮았는군요
+              - 닮는군요
+              - 닮았은군요
+            dictionaryForm: 닮다
+            hint: 发现·感叹
+          - sentence: 어제 잠을 못 자서 아주 피곤하겠군요.
+            translation: 昨天没睡好，您一定很累吧。
+            focus: 피곤하겠군요
+            cloze: 어제 잠을 못 자서 아주 {피곤하겠군요}.
+            answer: 피곤하겠군요
+            choices:
+              - 피곤하겠는군요
+              - 피곤하겠은군요
+              - 피곤하겠는데요요
+            dictionaryForm: 피곤하다
+            hint: 推测·感叹
+      - id: G-L09-08
+        name: -고 있다
+        function: 表示正在进行的动作，用于动词词干后。
+        examples:
+          - sentence: 연세대학교에서 한국말을 배우고 있습니다.
+            translation: 正在延世大学学习韩语。
+            focus: 배우고 있습니다
+            cloze: 연세대학교에서 한국말을 {배우고 있습니다}.
+            answer: 배우고 있습니다
+            choices:
+              - 배우있습니다
+              - 배우는고 있습니다
+              - 배우고 입습니다
+            dictionaryForm: 배우다
+            hint: 正在进行
+          - sentence: 저기 뛰어가고 있는 사람이 우리 오빠예요.
+            translation: 那边正在跑的人是我哥哥。
+            focus: 뛰어가고 있는
+            cloze: 저기 {뛰어가고 있는} 사람이 우리 오빠예요.
+            answer: 뛰어가고 있는
+            choices:
+              - 뛰어가있는
+              - 뛰어가고 있은
+              - 뛰어가고 있는는
+            dictionaryForm: 뛰어가다
+            hint: 正在进行·定语
+          - sentence: 음악을 듣고 있는데 아버지가 방에 들어오셨어요.
+            translation: 正在听音乐时，爸爸进了房间。
+            focus: 듣고 있는데
+            cloze: 음악을 {듣고 있는데} 아버지가 방에 들어오셨어요.
+            answer: 듣고 있는데
+            choices:
+              - 듣고 있은데
+              - 듣는고 있는데
+              - 듣고 있데
+            dictionaryForm: 듣다
+            hint: 进行中·背景
+          - sentence: 무슨 일을 하고 계십니까?
+            translation: 您正在做什么工作？
+            focus: 하고 계십니까
+            cloze: 무슨 일을 {하고 계십니까}?
+            answer: 하고 계십니까
+            choices:
+              - 하고 계세요까
+              - 하는고 계십니까
+              - 하고 계시읍니까
+            dictionaryForm: 하다
+            hint: 正在进行·敬语
+          - sentence: 지금 뭐 하고 있어요?
+            translation: 现在在做什么？
+            focus: 하고 있어요
+            cloze: 지금 뭐 {하고 있어요}?
+            answer: 하고 있어요
+            choices:
+              - 하는고 있어요
+              - 하고 있서요
+              - 하고 있어은요
+            dictionaryForm: 하다
+            hint: 正在进行

@@ -1,0 +1,870 @@
+version: "1.0"
+lessons:
+  - id: L10
+    title: 제10과 휴일과 방학
+    order: 10
+    topics:
+      - id: T-L10-01
+        title: 설악산에 가려고 해요
+        turns:
+          - speaker: 정회
+            text: 웨이 씨, 방학이 언제예요?
+            translation: 小伟，什么时候放假？
+          - speaker: 웨이
+            text: 6월 초에 수업이 끝나면 2주 동안 방학이에요.
+            translation: 六月初课程结束后，会放两周假。
+          - speaker: 정회
+            text: 그래요? 웨이 씨는 뭘 하실 거예요?
+            translation: 是吗？你准备做什么？
+          - speaker: 웨이
+            text: 이번 방학에는 설악산에 가려고 해요.
+            translation: 这次假期我打算去雪岳山。
+          - speaker: 정회
+            text: 등산을 하실 거예요?
+            translation: 你打算去登山吗？
+          - speaker: 웨이
+            text: 아니요, 이번에는 사진을 찍으러 가요.
+            translation: 不是，这次我是去拍照的。
+      - id: T-L10-02
+        title: 시간이 있을 때는 여행을 가요
+        turns:
+          - speaker: 웨이
+            text: 제 취미는 사진 찍기예요.
+            translation: 我的爱好是摄影。
+          - speaker: 정회
+            text: 그래요? 뭘 찍는데요?
+            translation: 是吗？你拍什么？
+          - speaker: 웨이
+            text: 주로 꽃을 찍어요. 정회 씨 취미는 뭐예요?
+            translation: 主要拍花。正会，你有什么爱好？
+          - speaker: 정회
+            text: 시간이 있을 때는 여행을 가요. 그리고 영화 보는 것도 좋아해요.
+            translation: 有时间就去旅行，也喜欢看电影。
+          - speaker: 웨이
+            text: 여행하신 곳 중에서 어디가 제일 좋았어요?
+            translation: 去过的地方中，你最喜欢哪里？
+          - speaker: 정회
+            text: 저는 제주도가 제일 좋았어요.
+            translation: 我最喜欢济州岛。
+      - id: T-L10-03
+        title: 극장에 자주 못 가요
+        turns:
+          - speaker: 정회
+            text: 웨이 씨는 영화를 자주 보세요?
+            translation: 小伟，你经常看电影吗？
+          - speaker: 웨이
+            text: 아니요, 바빠서 극장에 자주 못 가요. 한 달에 한 번쯤 가요.
+            translation: 不，因为忙，我不常去电影院，大约一个月去一次。
+          - speaker: 정회
+            text: 어떤 영화를 좋아하세요?
+            translation: 你喜欢什么电影？
+          - speaker: 웨이
+            text: 슬픈 영화를 좋아해요.
+            translation: 我喜欢悲伤的电影。
+          - speaker: 정회
+            text: 주말에는 표 사기가 어렵지요?
+            translation: 周末买票很难吧？
+          - speaker: 웨이
+            text: 네, 그런데 요즘에는 인터넷으로 예매할 수 있어서 편해요.
+            translation: 是的，不过现在可以网上订票，很方便。
+      - id: T-L10-04
+        title: 산책을 하고 집에서 쉬었어요
+        turns:
+          - speaker: 정회
+            text: 웨이 씨, 지난 주말에 뭘 하셨어요?
+            translation: 小伟，上周末你做了什么？
+          - speaker: 웨이
+            text: 산책을 하고 집에서 쉬었어요. 정회 씨는 뭘 하셨어요?
+            translation: 散了步，又在家休息。正会，你做了什么？
+          - speaker: 정회
+            text: 토요일에는 수영을 하고 일요일에는 탁구를 쳤어요.
+            translation: 周六游泳，周日打乒乓球。
+          - speaker: 웨이
+            text: 주말마다 운동을 많이 하세요?
+            translation: 你每个周末都经常运动吗？
+          - speaker: 정회
+            text: 탁구를 배우기 전에는 별로 많이 안 했어요.
+            translation: 学乒乓球以前不怎么运动。
+          - speaker: 웨이
+            text: 탁구를 잘 치세요? 저는 잘 치지 못하는데 좀 가르쳐 주세요.
+            translation: 你乒乓球打得好吗？我打得不好，能教教我吗？
+    vocabGroups:
+      - id: VG-L10-HOLIDAY
+        name: 휴일과 방학（假日与假期）
+        kind: noun
+        items:
+          - id: V-L10-HOLIDAY-01
+            word: 휴일
+            meaning: 假日
+            tags:
+              - 휴일과 방학（假日与假期）
+          - id: V-L10-HOLIDAY-02
+            word: 공휴일
+            meaning: 法定假日
+            tags:
+              - 휴일과 방학（假日与假期）
+          - id: V-L10-HOLIDAY-03
+            word: 연휴
+            meaning: 连休
+            tags:
+              - 휴일과 방학（假日与假期）
+          - id: V-L10-HOLIDAY-04
+            word: 봄방학
+            meaning: 春假
+            tags:
+              - 휴일과 방학（假日与假期）
+          - id: V-L10-HOLIDAY-05
+            word: 여름방학
+            meaning: 暑假
+            tags:
+              - 휴일과 방학（假日与假期）
+          - id: V-L10-HOLIDAY-06
+            word: 겨울방학
+            meaning: 寒假
+            tags:
+              - 휴일과 방학（假日与假期）
+          - id: V-L10-HOLIDAY-07
+            word: 휴가
+            meaning: 休假
+            tags:
+              - 휴일과 방학（假日与假期）
+      - id: VG-L10-PLAN
+        name: 계획（计划）
+        kind: phrase
+        items:
+          - id: V-L10-PLAN-01
+            word: 계획이 있다
+            meaning: 有计划
+            tags:
+              - 계획（计划）
+          - id: V-L10-PLAN-02
+            word: 계획이 없다
+            meaning: 没有计划
+            tags:
+              - 계획（计划）
+          - id: V-L10-PLAN-03
+            word: 계획을 세우다
+            meaning: 制定计划
+            tags:
+              - 계획（计划）
+      - id: VG-L10-HOBBY
+        name: 취미（兴趣爱好）
+        kind: phrase
+        items:
+          - id: V-L10-HOBBY-01
+            word: 영화 보기
+            meaning: 看电影
+            tags:
+              - 취미（兴趣爱好）
+            accept:
+              - 영화 감상
+          - id: V-L10-HOBBY-02
+            word: 음악 듣기
+            meaning: 听音乐
+            tags:
+              - 취미（兴趣爱好）
+            accept:
+              - 음악 감상
+          - id: V-L10-HOBBY-03
+            word: 책 읽기
+            meaning: 读书
+            tags:
+              - 취미（兴趣爱好）
+            accept:
+              - 독서
+          - id: V-L10-HOBBY-04
+            word: 사진 찍기
+            meaning: 摄影；拍照
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-05
+            word: 그림 그리기
+            meaning: 画画
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-06
+            word: 노래 부르기
+            meaning: 唱歌（兴趣活动）
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-07
+            word: 여행
+            meaning: 旅行
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-08
+            word: 등산
+            meaning: 登山（兴趣活动）
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-09
+            word: 낚시
+            meaning: 钓鱼
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-10
+            word: 운동
+            meaning: 体育运动
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-11
+            word: 바둑
+            meaning: 围棋
+            tags:
+              - 취미（兴趣爱好）
+          - id: V-L10-HOBBY-12
+            word: 요리
+            meaning: 烹饪
+            tags:
+              - 취미（兴趣爱好）
+      - id: VG-L10-MOVIE
+        name: 영화（电影种类及订票）
+        kind: noun
+        items:
+          - id: V-L10-MOVIE-01
+            word: 공포 영화
+            meaning: 恐怖电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-02
+            word: 액션 영화
+            meaning: 动作电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-03
+            word: 코미디 영화
+            meaning: 喜剧电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-04
+            word: 전쟁 영화
+            meaning: 战争电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-05
+            word: 만화 영화
+            meaning: 动画电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-06
+            word: 멜로 영화
+            meaning: 爱情电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-07
+            word: 공상 과학 영화
+            meaning: 科幻电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-08
+            word: 가족 영화
+            meaning: 家庭电影
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-09
+            word: 예매하다
+            meaning: 预售订票
+            tags:
+              - 영화（电影种类及订票）
+          - id: V-L10-MOVIE-10
+            word: 예약하다
+            meaning: 预约
+            tags:
+              - 영화（电影种类及订票）
+      - id: VG-L10-SPORT
+        name: 운동（运动搭配）
+        kind: phrase
+        items:
+          - id: V-L10-SPORT-01
+            word: 골프를 치다
+            meaning: 打高尔夫
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-02
+            word: 테니스를 치다
+            meaning: 打网球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-03
+            word: 탁구를 치다
+            meaning: 打乒乓球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-04
+            word: 당구를 치다
+            meaning: 打台球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-05
+            word: 배드민턴을 치다
+            meaning: 打羽毛球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-06
+            word: 자전거를 타다
+            meaning: 骑自行车
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-07
+            word: 스노보드를 타다
+            meaning: 滑单板滑雪
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-08
+            word: 스케이트를 타다
+            meaning: 滑冰
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-09
+            word: 스키를 타다
+            meaning: 滑雪
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-10
+            word: 축구를 하다
+            meaning: 踢足球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-11
+            word: 야구를 하다
+            meaning: 打棒球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-12
+            word: 농구를 하다
+            meaning: 打篮球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-13
+            word: 배구를 하다
+            meaning: 打排球
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-14
+            word: 등산을 하다
+            meaning: 登山（运动动作）
+            tags:
+              - 운동（运动搭配）
+          - id: V-L10-SPORT-15
+            word: 태권도를 하다
+            meaning: 练跆拳道
+            tags:
+              - 운동（运动搭配）
+    grammars:
+      - id: G-L10-01
+        name: -(으)려고 하다
+        function: 用于动词词干后，表示计划、打算或意图。元音结尾常用 -려고，收音结尾用 -으려고。
+        examples:
+          - sentence: 내일 대사관에 가려고 합니다.
+            translation: 明天打算去大使馆。
+            focus: 가려고 합니다
+            cloze: 내일 대사관에 {가려고 합니다}.
+            answer: 가려고 합니다
+            choices:
+              - 가으려고 합니다
+              - 가려고 입니까
+              - 가려려고 합니다
+            dictionaryForm: 가다
+            hint: 计划·意图
+          - sentence: 오후 몇 시에 출발하려고 합니까?
+            translation: 下午几点打算出发？
+            focus: 출발하려고 합니까
+            cloze: 오후 몇 시에 {출발하려고 합니까}?
+            answer: 출발하려고 합니까
+            choices:
+              - 출발하으려고 합니까
+              - 출발하려 합니까까
+              - 출발하려고 입니까
+            dictionaryForm: 출발하다
+            hint: 计划·疑问
+          - sentence: 도서관에 가서 책을 읽으려고 합니다.
+            translation: 打算去图书馆读书。
+            focus: 읽으려고 합니다
+            cloze: 도서관에 가서 책을 {읽으려고 합니다}.
+            answer: 읽으려고 합니다
+            choices:
+              - 읽려고 합니다
+              - 읽으려고 입니까
+              - 읽으려고 합니습니까
+            dictionaryForm: 읽다
+            hint: 计划·意图
+          - sentence: 우리 아들은 의사가 되려고 합니다.
+            translation: 我儿子打算当医生。
+            focus: 되려고 합니까
+            cloze: 우리 아들은 의사가 {되려고 합니다}.
+            answer: 되려고 합니까
+            choices:
+              - 되으려고 합니까
+              - 되는려고 합니까
+              - 되려고 입니까
+            dictionaryForm: 되다
+            hint: 计划·意图
+          - sentence: 김밥을 만들려고 합니다.
+            translation: 打算做紫菜包饭。
+            focus: 만들려고 합니다
+            cloze: 김밥을 {만들려고 합니다}.
+            answer: 만들려고 합니다
+            choices:
+              - 만들으려고 합니다
+              - 만드는려고 합니다
+              - 만들려고 입니까
+            dictionaryForm: 만들다
+            hint: 计划·意图
+      - id: G-L10-02
+        name: 동안
+        function: 接在时间段名词后，表示在某段时间期间。
+        examples:
+          - sentence: 1년 동안 한국말을 배웠어요.
+            translation: 学了一年韩语。
+            focus: 동안
+            cloze: 1년 {동안} 한국말을 배웠어요.
+            answer: 동안
+            choices:
+              - 전에
+              - 후에
+              - 부터
+            hint: 持续时间
+          - sentence: 사흘 동안에 생각이 달라졌어요.
+            translation: 三天里想法改变了。
+            focus: 동안에
+            cloze: 사흘 {동안에} 생각이 달라졌어요.
+            answer: 동안에
+            accept:
+              - 동안
+            choices:
+              - 전에
+              - 후에
+              - 부터
+            hint: 一段时间内
+          - sentence: 얼마 동안 운동을 하실 거예요?
+            translation: 您准备运动多长时间？
+            focus: 동안
+            cloze: 얼마 {동안} 운동을 하실 거예요?
+            answer: 동안
+            choices:
+              - 전에
+              - 후에
+              - 부터
+            hint: 持续时间
+          - sentence: 방학 동안 여행을 많이 하고 싶어요.
+            translation: 假期里想多旅行。
+            focus: 동안
+            cloze: 방학 {동안} 여행을 많이 하고 싶어요.
+            answer: 동안
+            choices:
+              - 전에
+              - 후에
+              - 부터
+            hint: 持续时间
+          - sentence: 몇 달 동안 친구를 못 만났어요.
+            translation: 几个月都没见到朋友了。
+            focus: 동안
+            cloze: 몇 달 {동안} 친구를 못 만났어요.
+            answer: 동안
+            choices:
+              - 전에
+              - 후에
+              - 부터
+            hint: 持续时间
+      - id: G-L10-03
+        name: 을/ㄹ 때
+        function: 表示动作发生的时间，用于谓词词干和体词谓词形后。过去时为“-었/았/했을 때”。名词后用“때”，如 점심 때, 시험 때, 방학 때。
+        examples:
+          - sentence: 저녁을 먹을 때 손님이 오셨어요.
+            translation: 吃晚饭的时候客人来了。
+            focus: 먹을 때
+            cloze: 저녁을 {먹을 때} 손님이 오셨어요.
+            answer: 먹을 때
+            choices:
+              - 먹는을 때
+              - 먹을에 때
+              - 먹으을 때
+            dictionaryForm: 먹다
+            hint: 动作发生时
+          - sentence: 버스를 탈 때 조심하세요.
+            translation: 坐公交车时请小心。
+            focus: 탈 때
+            cloze: 버스를 {탈 때} 조심하세요.
+            answer: 탈 때
+            choices:
+              - 타을 때
+              - 타는을 때
+              - 탄을 때
+            dictionaryForm: 타다
+            hint: 动作发生时
+          - sentence: 공항에 도착했을 때는 밤이었어요.
+            translation: 到达机场的时候已经是夜里了。
+            focus: 도착했을 때
+            cloze: 공항에 {도착했을 때}는 밤이었어요.
+            answer: 도착했을 때
+            choices:
+              - 도착한을 때
+              - 도착했는을 때
+              - 도착했때
+            dictionaryForm: 도착하다
+            hint: 过去某时
+          - sentence: 점심 때 전화해 주세요.
+            translation: 午饭时间请打电话。
+            focus: 때
+            cloze: 점심 {때} 전화해 주세요.
+            answer: 때
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 名词后·时间
+          - sentence: 시험 때는 긴장하지 마세요.
+            translation: 考试时不要紧张。
+            focus: 때는
+            cloze: 시험 {때는} 긴장하지 마세요.
+            answer: 때는
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 名词后·时间
+          - sentence: 방학 때 여행을 가고 싶어요.
+            translation: 放假时想去旅行。
+            focus: 때
+            cloze: 방학 {때} 여행을 가고 싶어요.
+            answer: 때
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 名词后·时间
+      - id: G-L10-04
+        name: 중에서
+        function: 表示“……当中”，用于表示各种事物、对象的体词后。
+        examples:
+          - sentence: 한국 음식 중에서 무엇이 맛있어요?
+            translation: 韩国料理中什么好吃？
+            focus: 중에서
+            cloze: 한국 음식 {중에서} 무엇이 맛있어요?
+            answer: 중에서
+            choices:
+              - 밖에서
+              - 까지
+              - 부터
+            hint: 范围·其中
+          - sentence: 고기하고 생선 중에서 저는 생선을 좋아해요.
+            translation: 肉和鱼当中，我喜欢鱼。
+            focus: 중에서
+            cloze: 고기하고 생선 {중에서} 저는 생선을 좋아해요.
+            answer: 중에서
+            choices:
+              - 밖에서
+              - 까지
+              - 부터
+            hint: 范围·其中
+          - sentence: 한국에 있는 산 중에서 설악산이 제일 유명해요.
+            translation: 在韩国的山中，雪岳山最有名。
+            focus: 중에서
+            cloze: 한국에 있는 산 {중에서} 설악산이 제일 유명해요.
+            answer: 중에서
+            choices:
+              - 밖에서
+              - 까지
+              - 부터
+            hint: 范围·其中
+          - sentence: 이 중에서 사고 싶은 것을 고르세요.
+            translation: 从这些里面选一个想买的。
+            focus: 중에서
+            cloze: 이 {중에서} 사고 싶은 것을 고르세요.
+            answer: 중에서
+            choices:
+              - 밖에서
+              - 까지
+              - 부터
+            hint: 范围·其中
+          - sentence: 운동 중에서 여름에 쉽게 할 수 있는 운동은 수영이에요.
+            translation: 在运动中，夏天容易做的运动是游泳。
+            focus: 중에서
+            cloze: 운동 {중에서} 여름에 쉽게 할 수 있는 운동은 수영이에요.
+            answer: 중에서
+            choices:
+              - 밖에서
+              - 까지
+              - 부터
+            hint: 范围·其中
+      - id: G-L10-05
+        name: 에 ~쯤
+        function: “에”一般接在单位名词后面，表示基准。后面常和“쯤”连用，表示估计。
+        examples:
+          - sentence: 하루에 8시간쯤 자요.
+            translation: 每天大约睡8小时。
+            focus: 쯤
+            cloze: 하루에 8시간{쯤} 자요.
+            answer: 쯤
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 大约
+          - sentence: 일주일에 한 번쯤 친구들을 만나요.
+            translation: 一周大约见一次朋友。
+            focus: 쯤
+            cloze: 일주일에 한 번{쯤} 친구들을 만나요.
+            answer: 쯤
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 大约
+          - sentence: 1년에 두 번쯤 여행을 가요.
+            translation: 一年大约旅行两次。
+            focus: 쯤
+            cloze: 1년에 두 번{쯤} 여행을 가요.
+            answer: 쯤
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 大约
+          - sentence: 하루에 5개쯤 만들어요.
+            translation: 每天大约做5个。
+            focus: 쯤
+            cloze: 하루에 5개{쯤} 만들어요.
+            answer: 쯤
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 大约
+          - sentence: 귤 세 개에 1,000원쯤 해요.
+            translation: 三个橘子大约要1000韩元。
+            focus: 쯤
+            cloze: 귤 세 개에 1,000원{쯤} 해요.
+            answer: 쯤
+            choices:
+              - 마다
+              - 부터
+              - 까지
+            hint: 大约
+      - id: G-L10-06
+        name: 못 (副词)
+        function: 副词，表示“没能够”，常用于动词前。如果和“-하다”动词连用，放在“하다”前。
+        examples:
+          - sentence: 매운 음식을 못 먹어요.
+            translation: 不能吃辣的食物。
+            focus: 못 먹어요
+            cloze: 매운 음식을 {못 먹어요}.
+            answer: 못 먹어요
+            accept:
+              - 먹지 못해요
+            choices:
+              - 안 먹어요
+              - 먹을 수 있어요
+              - 먹고 있어요
+            dictionaryForm: 먹다
+            hint: 无法做到
+          - sentence: 한자를 안 배워서 못 읽어요.
+            translation: 因为没学过汉字，所以读不了。
+            focus: 못 읽어요
+            cloze: 한자를 안 배워서 {못 읽어요}.
+            answer: 못 읽어요
+            accept:
+              - 읽지 못해요
+            choices:
+              - 안 읽어요
+              - 읽을 수 있어요
+              - 읽고 있어요
+            dictionaryForm: 읽다
+            hint: 无法做到
+          - sentence: 어릴 때는 물이 무서워서 수영을 못 했어요.
+            translation: 小时候怕水，所以不会游泳。
+            focus: 못 했어요
+            cloze: 어릴 때는 물이 무서워서 수영을 {못 했어요}.
+            answer: 못 했어요
+            accept:
+              - 하지 못했어요
+            choices:
+              - 안 했어요
+              - 하고 있어요
+              - 할 수 있어요
+            dictionaryForm: 하다
+            hint: 无法做到·过去
+          - sentence: 너무 피곤해서 시계 소리를 못 들었어요.
+            translation: 太累了，没听到钟表声。
+            focus: 못 들었어요
+            cloze: 너무 피곤해서 시계 소리를 {못 들었어요}.
+            answer: 못 들었어요
+            accept:
+              - 듣지 못했어요
+            choices:
+              - 안 들었어요
+              - 듣고 있었어요
+              - 들을 수 있어요
+            dictionaryForm: 듣다
+            hint: 无法做到·过去
+          - sentence: 한국은 교통이 너무 복잡해서 운전을 못 하겠어요.
+            translation: 韩国交通太复杂，我没法开车。
+            focus: 못 하겠어요
+            cloze: 한국은 교통이 너무 복잡해서 운전을 {못 하겠어요}.
+            answer: 못 하겠어요
+            accept:
+              - 하지 못하겠어요
+            choices:
+              - 안 하겠어요
+              - 할 수 있겠어요
+              - 하고 싶어요
+            dictionaryForm: 하다
+            hint: 无法做到·推测
+      - id: G-L10-07
+        name: -기 전에
+        function: 表示一个动作发生在另一个之前，用于谓词词干后。名词后直接用“-전에”。
+        examples:
+          - sentence: 밥을 먹기 전에 손을 씻어요.
+            translation: 吃饭前洗手。
+            focus: 먹기 전에
+            cloze: 밥을 {먹기 전에} 손을 씻어요.
+            answer: 먹기 전에
+            choices:
+              - 먹고 나서
+              - 먹을 때
+              - 먹는 동안
+            dictionaryForm: 먹다
+            hint: 动作之前
+          - sentence: 한국에 오기 전에 한국말을 하나도 몰랐어요.
+            translation: 来韩国以前一点韩语都不会。
+            focus: 오기 전에
+            cloze: 한국에 {오기 전에} 한국말을 하나도 몰랐어요.
+            answer: 오기 전에
+            choices:
+              - 오고 나서
+              - 올 때
+              - 오는 동안
+            dictionaryForm: 오다
+            hint: 动作之前
+          - sentence: 수영을 하기 전에 준비 운동을 하세요.
+            translation: 游泳前请做准备运动。
+            focus: 하기 전에
+            cloze: 수영을 {하기 전에} 준비 운동을 하세요.
+            answer: 하기 전에
+            choices:
+              - 하고 나서
+              - 할 때
+              - 하는 동안
+            dictionaryForm: 하다
+            hint: 动作之前
+          - sentence: 여행하기 전에 준비할 게 많아요?
+            translation: 旅行前要准备的东西多吗？
+            focus: 하기 전에
+            cloze: 여행{하기 전에} 준비할 게 많아요?
+            answer: 하기 전에
+            choices:
+              - 하고 나서
+              - 할 때
+              - 하는 동안
+            dictionaryForm: 여행하다
+            hint: 动作之前
+          - sentence: 물건을 사기 전에 계획을 세워요.
+            translation: 买东西前先制定计划。
+            focus: 사기 전에
+            cloze: 물건을 {사기 전에} 계획을 세워요.
+            answer: 사기 전에
+            choices:
+              - 사고 나서
+              - 살 때
+              - 사는 동안
+            dictionaryForm: 사다
+            hint: 动作之前
+          - sentence: 10분 전에 전화가 왔어요.
+            translation: 十分钟前有电话打来。
+            focus: 전에
+            cloze: 10분 {전에} 전화가 왔어요.
+            answer: 전에
+            choices:
+              - 후에
+              - 동안
+              - 부터
+            hint: 时间之前
+          - sentence: 한 달 전에 고향에 다녀왔어요.
+            translation: 一个月前回过一趟老家。
+            focus: 전에
+            cloze: 한 달 {전에} 고향에 다녀왔어요.
+            answer: 전에
+            choices:
+              - 후에
+              - 동안
+              - 부터
+            hint: 时间之前
+          - sentence: 1년 전에 졸업했어요.
+            translation: 一年前毕业了。
+            focus: 전에
+            cloze: 1년 {전에} 졸업했어요.
+            answer: 전에
+            choices:
+              - 후에
+              - 동안
+              - 부터
+            hint: 时间之前
+      - id: G-L10-08
+        name: -지 못하다
+        function: 表示“没能够”，用于谓词词干后。
+        examples:
+          - sentence: 한자를 몰라서 신문을 읽지 못해요.
+            translation: 因为不认识汉字，所以不能读报纸。
+            focus: 읽지 못해요
+            cloze: 한자를 몰라서 신문을 {읽지 못해요}.
+            answer: 읽지 못해요
+            accept:
+              - 못 읽어요
+            choices:
+              - 읽지 않아요
+              - 읽을 수 있어요
+              - 읽고 있어요
+            dictionaryForm: 읽다
+            hint: 不能
+          - sentence: 어제 잠을 잘 자지 못해서 피곤합니다.
+            translation: 昨天没睡好，所以很累。
+            focus: 자지 못해서
+            cloze: 어제 잠을 잘 {자지 못해서} 피곤합니다.
+            answer: 자지 못해서
+            accept:
+              - 못 자서
+            choices:
+              - 자지 않아서
+              - 잘 수 있어서
+              - 자고 있어서
+            dictionaryForm: 자다
+            hint: 不能·原因
+          - sentence: 술은 한 방울도 마시지 못해요.
+            translation: 一滴酒也喝不了。
+            focus: 마시지 못해요
+            cloze: 술은 한 방울도 {마시지 못해요}.
+            answer: 마시지 못해요
+            accept:
+              - 못 마셔요
+            choices:
+              - 마시지 않아요
+              - 마실 수 있어요
+              - 마시고 있어요
+            dictionaryForm: 마시다
+            hint: 不能
+          - sentence: 약속을 지키지 못해서 죄송합니다.
+            translation: 没能遵守约定，很抱歉。
+            focus: 지키지 못해서
+            cloze: 약속을 {지키지 못해서} 죄송합니다.
+            answer: 지키지 못해서
+            accept:
+              - 못 지켜서
+            choices:
+              - 지키지 않아서
+              - 지킬 수 있어서
+              - 지키고 있어서
+            dictionaryForm: 지키다
+            hint: 不能·原因
+          - sentence: 저는 노래를 잘 부르지 못합니다.
+            translation: 我唱歌唱得不太好。
+            focus: 부르지 못합니다
+            cloze: 저는 노래를 잘 {부르지 못합니다}.
+            answer: 부르지 못합니다
+            accept:
+              - 못 부릅니다
+            choices:
+              - 부르지 않습니다
+              - 부를 수 있습니다
+              - 부르고 있습니다
+            dictionaryForm: 부르다
+            hint: 不擅长
