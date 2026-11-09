@@ -184,7 +184,7 @@ lessons:
               - 취미（兴趣爱好）
           - id: V-L10-HOBBY-06
             word: 노래 부르기
-            meaning: 唱歌（兴趣活动）
+            meaning: 唱歌
             tags:
               - 취미（兴趣爱好）
           - id: V-L10-HOBBY-07
@@ -194,7 +194,7 @@ lessons:
               - 취미（兴趣爱好）
           - id: V-L10-HOBBY-08
             word: 등산
-            meaning: 登山（兴趣活动）
+            meaning: 登山
             tags:
               - 취미（兴趣爱好）
           - id: V-L10-HOBBY-09
@@ -342,7 +342,7 @@ lessons:
               - 운동（运动搭配）
           - id: V-L10-SPORT-14
             word: 등산을 하다
-            meaning: 登山（运动动作）
+            meaning: 登山
             tags:
               - 운동（运动搭配）
           - id: V-L10-SPORT-15
