@@ -248,12 +248,14 @@ lessons:
               id: V-L05-TIME2-01,
               word: 그제/그저께,
               meaning: 前天,
+              accept: [그제, 그저께],
               tags: [시간],
             }
           - {
               id: V-L05-TIME2-02,
               word: 어제/어저께,
               meaning: 昨天,
+              accept: [어제, 어저께],
               tags: [시간],
             }
           - { id: V-L05-TIME2-03, word: 오늘, meaning: 今天, tags: [시간] }

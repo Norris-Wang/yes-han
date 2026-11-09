@@ -99,90 +99,437 @@ lessons:
         name: 전화 종류
         kind: noun
         items:
-          - { id: V-L08-PHONE-01, word: 국제전화, meaning: 国际电话, tags: [전화] }
-          - { id: V-L08-PHONE-02, word: 시외전화, meaning: 长途电话, tags: [전화] }
-          - { id: V-L08-PHONE-03, word: 휴대전화/핸드폰, meaning: 手机, tags: [전화] }
-
+          - {
+              id: V-L08-PHONE-01,
+              word: 국제전화,
+              meaning: 国际电话,
+              tags: [전화],
+            }
+          - {
+              id: V-L08-PHONE-02,
+              word: 시외전화,
+              meaning: 长途电话,
+              tags: [전화],
+            }
+          - {
+              id: V-L08-PHONE-03,
+              word: 휴대전화/핸드폰,
+              meaning: 手机,
+              accept: [휴대전화, 핸드폰],
+              tags: [전화],
+            }
 
       - id: VG-L08-ACTION
         name: 전화 관련 동작
         kind: phrase
         items:
-          - { id: V-L08-ACTION-01, word: 전화를 걸다/받다, meaning: 打/接电话, tags: [전화] }
-          - { id: V-L08-ACTION-02, word: 전화번호를 누르다, meaning: 按电话号码, tags: [전화] }
-          - { id: V-L08-ACTION-03, word: 전화벨이 울리다, meaning: 电话铃响, tags: [전화] }
-          - { id: V-L08-ACTION-04, word: 신호가 가다, meaning: 有信号, tags: [전화] }
-          - { id: V-L08-ACTION-05, word: 잘못 걸다, meaning: 打错（电话）, tags: [전화] }
-          - { id: V-L08-ACTION-06, word: 휴대전화/핸드폰을 켜다/끄다, meaning: 开/关机, tags: [전화] }
-          - { id: V-L08-ACTION-07, word: 문자메시지를 보내다/확인하다, meaning: 发/看文字信息, tags: [전화] }
-          - { id: V-L08-ACTION-08, word: 음성메시지를 남기다/확인하다, meaning: 留言/听留言, tags: [전화] }
+          - {
+              id: V-L08-ACTION-01A,
+              word: 전화를 걸다,
+              meaning: 打电话,
+              tags: [전화, 동사],
+            }
+          - {
+              id: V-L08-ACTION-01B,
+              word: 전화를 받다,
+              meaning: 接电话,
+              tags: [전화, 동사],
+            }
+          - {
+              id: V-L08-ACTION-02,
+              word: 전화번호를 누르다,
+              meaning: 按电话号码,
+              tags: [전화],
+            }
+          - {
+              id: V-L08-ACTION-03,
+              word: 전화벨이 울리다,
+              meaning: 电话铃响,
+              tags: [전화],
+            }
+          - {
+              id: V-L08-ACTION-04,
+              word: 신호가 가다,
+              meaning: 有信号,
+              tags: [전화],
+            }
+
+          - {
+              id: V-L08-ACTION-05,
+              word: 잘못 걸다,
+              meaning: 打错（电话）,
+              tags: [전화],
+            }
+
+          - id: V-L08-ACTION-06A
+            word: 휴대전화를 켜다
+            meaning: 开机
+            tags: [전화, 동사]
+            accept:
+              - 핸드폰을 켜다
+              - 휴대폰을 켜다
+
+          - id: V-L08-ACTION-06B
+            word: 휴대전화를 끄다
+            meaning: 关机
+            tags: [전화, 동사]
+            accept:
+              - 핸드폰을 끄다
+              - 휴대폰을 끄다
+
+          - id: V-L08-ACTION-07A
+            word: 문자메시지를 보내다
+            meaning: 发文字信息
+            tags: [전화, 동사]
+
+          - id: V-L08-ACTION-07B
+            word: 문자메시지를 확인하다
+            meaning: 查看文字信息
+            tags: [전화, 동사]
+
+          - id: V-L08-ACTION-08A
+            word: 음성메시지를 남기다
+            meaning: 留语音消息
+            tags: [전화, 동사]
+            accept:
+              - 음성 메시지를 남기다
+
+          - id: V-L08-ACTION-08B
+            word: 음성메시지를 확인하다
+            meaning: 查看语音留言
+            tags: [전화, 동사]
+            accept:
+              - 음성 메시지를 확인하다
 
       - id: VG-L08-PROMISE
         name: 약속 (约定)
         kind: phrase
         items:
-          - { id: V-L08-PROMISE-01, word: 약속하다, meaning: 约定/约会, tags: [약속] }
-          - { id: V-L08-PROMISE-02, word: 약속 장소/시간, meaning: 约定地点/时间, tags: [약속] }
-          - { id: V-L08-PROMISE-03, word: 약속 시간을 바꾸다, meaning: 更改约定时间, tags: [약속] }
-          - { id: V-L08-PROMISE-04, word: 약속을 어기다/지키다, meaning: 违背/遵守约定, tags: [약속] }
+          - {
+              id: V-L08-PROMISE-01,
+              word: 약속하다,
+              meaning: 约定/约会,
+              tags: [약속],
+            }
+          - {
+              id: V-L08-PROMISE-02A,
+              word: 약속 장소,
+              meaning: 约定地点,
+              tags: [약속],
+            }
+          - {
+              id: V-L08-PROMISE-02B,
+              word: 약속 시간,
+              meaning: 约定时间,
+              tags: [약속],
+            }
+          - {
+              id: V-L08-PROMISE-03,
+              word: 약속 시간을 바꾸다,
+              meaning: 更改约定时间,
+              tags: [약속],
+            }
+          - {
+              id: V-L08-PROMISE-04A,
+              word: 약속을 어기다,
+              meaning: 违背约定,
+              tags: [약속, 동사],
+            }
+          - {
+              id: V-L08-PROMISE-04B,
+              word: 약속을 지키다,
+              meaning: 遵守约定,
+              tags: [약속, 동사],
+            }
 
     grammars:
       - id: G-L08-01
         name: 을게요/ㄹ게요
         function: 终结词尾，用于动词词干后，表示说话人的意志、誓言或决定，隐含对听话人的考虑。
         examples:
-          - { sentence: "이 책을 살게요.", translation: "我要买这本书。", focus: "살게요", answer: "살게요", dictionaryForm: "사다", choices: ["삽니다", "사겠습니다", "사십시오"], hint: "意志/决定" }
-          - { sentence: "이따가 전화할게요.", translation: "待会儿给你打电话。", focus: "전화할게요", answer: "전화할게요", dictionaryForm: "전화하다", choices: ["전화합니다", "전화하겠습니다", "전화하십시오"], hint: "意志/决定" }
-          - { sentence: "내일은 꼭 일찍 올게요.", translation: "明天一定早点来。", focus: "올게요", answer: "올게요", dictionaryForm: "오다", choices: ["옵니다", "오겠습니다", "오십시오"], hint: "意志/决定" }
-          - { sentence: "이번 일은 제가 도와 드릴게요.", translation: "这次的事我来帮您。", focus: "도와 드릴게요", answer: "도와 드릴게요", dictionaryForm: "도와 드리다", choices: ["도와 드립니다", "도와 드리겠습니다", "도와 주십시오"], hint: "意志/决定(敬语)" }
-          - { sentence: "여기서는 담배를 피우지 않을게요.", translation: "在这里我不抽烟。", focus: "피우지 않을게요", answer: "피우지 않을게요", dictionaryForm: "피우지 않다", choices: ["피우지 않습니다", "피우지 않겠습니다", "피우지 마십시오"], hint: "意志/否定" }
+          - {
+              sentence: "이 책을 살게요.",
+              translation: "我要买这本书。",
+              focus: "살게요",
+              answer: "살게요",
+              dictionaryForm: "사다",
+              choices: ["삽니다", "사겠습니다", "사십시오"],
+              hint: "意志/决定",
+            }
+          - {
+              sentence: "이따가 전화할게요.",
+              translation: "待会儿给你打电话。",
+              focus: "전화할게요",
+              answer: "전화할게요",
+              dictionaryForm: "전화하다",
+              choices: ["전화합니다", "전화하겠습니다", "전화하십시오"],
+              hint: "意志/决定",
+            }
+          - {
+              sentence: "내일은 꼭 일찍 올게요.",
+              translation: "明天一定早点来。",
+              focus: "올게요",
+              answer: "올게요",
+              dictionaryForm: "오다",
+              choices: ["옵니다", "오겠습니다", "오십시오"],
+              hint: "意志/决定",
+            }
+          - {
+              sentence: "이번 일은 제가 도와 드릴게요.",
+              translation: "这次的事我来帮您。",
+              focus: "도와 드릴게요",
+              answer: "도와 드릴게요",
+              dictionaryForm: "도와 드리다",
+              choices: ["도와 드립니다", "도와 드리겠습니다", "도와 주십시오"],
+              hint: "意志/决定(敬语)",
+            }
+          - {
+              sentence: "여기서는 담배를 피우지 않을게요.",
+              translation: "在这里我不抽烟。",
+              focus: "피우지 않을게요",
+              answer: "피우지 않을게요",
+              dictionaryForm: "피우지 않다",
+              choices:
+                ["피우지 않습니다", "피우지 않겠습니다", "피우지 마십시오"],
+              hint: "意志/否定",
+            }
 
       - id: G-L08-02
         name: (이)나
         function: 助词，用于体词后，表示“或”。
         examples:
-          - { sentence: "주말에는 농구나 축구를 합시다.", translation: "周末打篮球或踢足球吧。", focus: "농구나", answer: "농구나", dictionaryForm: "농구", choices: ["농구가", "농구는", "농구를"], hint: "选择/或" }
-          - { sentence: "오늘 두 시나 세 시쯤에 전화해 주세요.", translation: "今天2点或3点左右请给我打电话。", focus: "두 시나", answer: "두 시나", dictionaryForm: "두 시", choices: ["두 시가", "두 시는", "두 시를"], hint: "选择/或" }
-          - { sentence: "지하철이나 버스를 타고 학교에 갑니다.", translation: "坐地铁或公交车去学校。", focus: "지하철이나", answer: "지하철이나", dictionaryForm: "지하철", choices: ["지하철이", "지하철은", "지하철을"], hint: "选择/或" }
-          - { sentence: "요즘 바빠서 영화나 연극을 볼 시간이 없어요.", translation: "最近很忙，没时间看电影或话剧。", focus: "영화나", answer: "영화나", dictionaryForm: "영화", choices: ["영화가", "영화는", "영화를"], hint: "选择/或" }
-          - { sentence: "이번 여름에는 산이나 바다에 가고 싶어요.", translation: "今年夏天想去爬山或去海边。", focus: "산이나", answer: "산이나", dictionaryForm: "산", choices: ["산이", "산은", "산을"], hint: "选择/或" }
+          - {
+              sentence: "주말에는 농구나 축구를 합시다.",
+              translation: "周末打篮球或踢足球吧。",
+              focus: "농구나",
+              answer: "농구나",
+              dictionaryForm: "농구",
+              choices: ["농구가", "농구는", "농구를"],
+              hint: "选择/或",
+            }
+          - {
+              sentence: "오늘 두 시나 세 시쯤에 전화해 주세요.",
+              translation: "今天2点或3点左右请给我打电话。",
+              focus: "두 시나",
+              answer: "두 시나",
+              dictionaryForm: "두 시",
+              choices: ["두 시가", "두 시는", "두 시를"],
+              hint: "选择/或",
+            }
+          - {
+              sentence: "지하철이나 버스를 타고 학교에 갑니다.",
+              translation: "坐地铁或公交车去学校。",
+              focus: "지하철이나",
+              answer: "지하철이나",
+              dictionaryForm: "지하철",
+              choices: ["지하철이", "지하철은", "지하철을"],
+              hint: "选择/或",
+            }
+          - {
+              sentence: "요즘 바빠서 영화나 연극을 볼 시간이 없어요.",
+              translation: "最近很忙，没时间看电影或话剧。",
+              focus: "영화나",
+              answer: "영화나",
+              dictionaryForm: "영화",
+              choices: ["영화가", "영화는", "영화를"],
+              hint: "选择/或",
+            }
+          - {
+              sentence: "이번 여름에는 산이나 바다에 가고 싶어요.",
+              translation: "今年夏天想去爬山或去海边。",
+              focus: "산이나",
+              answer: "산이나",
+              dictionaryForm: "산",
+              choices: ["산이", "산은", "산을"],
+              hint: "选择/或",
+            }
 
       - id: G-L08-03
         name: 는/은/ㄴ데요
         function: 终结词尾，用于谓词词干和体词谓词形后，表示说话人叙述某情况并期待得到对方的回应。动词后用는데요，形容词后用 ㄴ/은데요，体词谓词形后用ㄴ데요。
         examples:
-          - { sentence: "이 시험은 좀 어려운데요.", translation: "这个考试有点难呢。", focus: "어려운데요", answer: "어려운데요", dictionaryForm: "어렵다", choices: ["어렵습니다", "어려울까요", "어렵지만"], hint: "提示背景/期待回应(形容词)" }
-          - { sentence: "이 옷이 잘 어울리는데요.", translation: "这件衣服很适合你呢。", focus: "어울리는데요", answer: "어울리는데요", dictionaryForm: "어울리다", choices: ["어울립니다", "어울릴까요", "어울리지만"], hint: "提示背景/期待回应(动词)" }
-          - { sentence: "저는 신촌에 사는데요.", translation: "我住在新村呢。", focus: "사는데요", answer: "사는데요", dictionaryForm: "살다", choices: ["삽니다", "살까요", "살지만"], hint: "提示背景/期待回应(动词)" }
-          - { sentence: "시간이 좀 오래 걸리는데요.", translation: "花费的时间有点长呢。", focus: "걸리는데요", answer: "걸리는데요", dictionaryForm: "걸리다", choices: ["걸립니다", "걸릴까요", "걸리지만"], hint: "提示背景/期待回应(动词)" }
-          - { sentence: "바로 전데요. 누구예요?", translation: "就是我（接电话）。你是哪位？", focus: "전데요", answer: "전데요", dictionaryForm: "이다", choices: ["입니다", "입니까", "이지만"], hint: "提示背景/期待回应(体词)" }
+          - {
+              sentence: "이 시험은 좀 어려운데요.",
+              translation: "这个考试有点难呢。",
+              focus: "어려운데요",
+              answer: "어려운데요",
+              dictionaryForm: "어렵다",
+              choices: ["어렵습니다", "어려울까요", "어렵지만"],
+              hint: "提示背景/期待回应(形容词)",
+            }
+          - {
+              sentence: "이 옷이 잘 어울리는데요.",
+              translation: "这件衣服很适合你呢。",
+              focus: "어울리는데요",
+              answer: "어울리는데요",
+              dictionaryForm: "어울리다",
+              choices: ["어울립니다", "어울릴까요", "어울리지만"],
+              hint: "提示背景/期待回应(动词)",
+            }
+          - {
+              sentence: "저는 신촌에 사는데요.",
+              translation: "我住在新村呢。",
+              focus: "사는데요",
+              answer: "사는데요",
+              dictionaryForm: "살다",
+              choices: ["삽니다", "살까요", "살지만"],
+              hint: "提示背景/期待回应(动词)",
+            }
+          - {
+              sentence: "시간이 좀 오래 걸리는데요.",
+              translation: "花费的时间有点长呢。",
+              focus: "걸리는데요",
+              answer: "걸리는데요",
+              dictionaryForm: "걸리다",
+              choices: ["걸립니다", "걸릴까요", "걸리지만"],
+              hint: "提示背景/期待回应(动词)",
+            }
+          - {
+              sentence: "바로 전데요. 누구예요?",
+              translation: "就是我（接电话）。你是哪位？",
+              focus: "전데요",
+              answer: "전데요",
+              dictionaryForm: "이다",
+              choices: ["입니다", "입니까", "이지만"],
+              hint: "提示背景/期待回应(体词)",
+            }
 
       - id: G-L08-04
         name: 에게서/한테서
         function: 助词，用于活动体体词后，表示动作或状态的出发点。通常和“배우다, 듣다, 받다, 빌리다”这类动词一起使用，意思相当于“으로 부터”。活动体：有生命、能活动的事物
         examples:
-          - { sentence: "선생님한테서 한국말을 배웁니다.", translation: "向老师学习韩语。", focus: "한테서", answer: "한테서", choices: ["에게서", "한테", "에게"], hint: "来源/从... (口语)" }
-          - { sentence: "친구한테서 그 이야기를 들었어요.", translation: "从朋友那里听到了那件事。", focus: "한테서", answer: "한테서", choices: ["에게서", "한테", "에게"], hint: "来源/从... (口语)" }
-          - { sentence: "이거 누구한테서 받았어요?", translation: "这个是从谁那里收到的？", focus: "한테서", answer: "한테서", choices: ["에게서", "한테", "에게"], hint: "来源/从... (口语)" }
-          - { sentence: "고향에 계시는 부모님에게서 편지가 왔어요.", translation: "在故乡的父母来信了。", focus: "에게서", answer: "에게서", choices: ["한테서", "한테", "에게"], hint: "来源/从... (书面/敬语)" }
-          - { sentence: "친한 친구에게서 돈을 빌렸어요.", translation: "向好朋友借了钱。", focus: "에게서", answer: "에게서", choices: ["한테서", "한테", "에게"], hint: "来源/从... (书面)" }
+          - {
+              sentence: "선생님한테서 한국말을 배웁니다.",
+              translation: "向老师学习韩语。",
+              focus: "한테서",
+              answer: "한테서",
+              choices: ["에게서", "한테", "에게"],
+              hint: "来源/从... (口语)",
+            }
+          - {
+              sentence: "친구한테서 그 이야기를 들었어요.",
+              translation: "从朋友那里听到了那件事。",
+              focus: "한테서",
+              answer: "한테서",
+              choices: ["에게서", "한테", "에게"],
+              hint: "来源/从... (口语)",
+            }
+          - {
+              sentence: "이거 누구한테서 받았어요?",
+              translation: "这个是从谁那里收到的？",
+              focus: "한테서",
+              answer: "한테서",
+              choices: ["에게서", "한테", "에게"],
+              hint: "来源/从... (口语)",
+            }
+          - {
+              sentence: "고향에 계시는 부모님에게서 편지가 왔어요.",
+              translation: "在故乡的父母来信了。",
+              focus: "에게서",
+              answer: "에게서",
+              choices: ["한테서", "한테", "에게"],
+              hint: "来源/从... (书面/敬语)",
+            }
+          - {
+              sentence: "친한 친구에게서 돈을 빌렸어요.",
+              translation: "向好朋友借了钱。",
+              focus: "에게서",
+              answer: "에게서",
+              choices: ["한테서", "한테", "에게"],
+              hint: "来源/从... (书面)",
+            }
 
       - id: G-L08-05
         name: (으) 면
         function: 连接词尾，用于谓词词干和体词谓词形后，表示前句是后句的假设条件。
         examples:
-          - { sentence: "바쁘지 않으면 내일 만날까요?", translation: "如果不忙，明天见面好吗？", focus: "않으면", answer: "않으면", dictionaryForm: "않다", choices: ["않아서", "않고", "않지만"], hint: "假设条件/如果" }
-          - { sentence: "내일 날씨가 좋으면 설악산을 갑시다.", translation: "如果明天天气好，我们去雪岳山吧。", focus: "좋으면", answer: "좋으면", dictionaryForm: "좋다", choices: ["좋아서", "좋고", "좋지만"], hint: "假设条件/如果" }
-          - { sentence: "많이 아프면 학교에 오지 마세요.", translation: "如果病得很重，请不要来学校。", focus: "아프면", answer: "아프면", dictionaryForm: "아프다", choices: ["아파서", "아프고", "아프지만"], hint: "假设条件/如果" }
-          - { sentence: "싫으면 다른 것으로 바꾸세요.", translation: "如果不喜欢，请换别的。", focus: "싫으면", answer: "싫으면", dictionaryForm: "싫다", choices: ["싫어서", "싫고", "싫지만"], hint: "假设条件/如果" }
-          - { sentence: "스트레스가 쌓이면 어떻게 하세요?", translation: "如果有压力（积累），你怎么做？", focus: "쌓이면", answer: "쌓이면", dictionaryForm: "쌓이다", choices: ["쌓여서", "쌓이고", "쌓이지만"], hint: "假设条件/如果" }
+          - {
+              sentence: "바쁘지 않으면 내일 만날까요?",
+              translation: "如果不忙，明天见面好吗？",
+              focus: "않으면",
+              answer: "않으면",
+              dictionaryForm: "않다",
+              choices: ["않아서", "않고", "않지만"],
+              hint: "假设条件/如果",
+            }
+          - {
+              sentence: "내일 날씨가 좋으면 설악산을 갑시다.",
+              translation: "如果明天天气好，我们去雪岳山吧。",
+              focus: "좋으면",
+              answer: "좋으면",
+              dictionaryForm: "좋다",
+              choices: ["좋아서", "좋고", "좋지만"],
+              hint: "假设条件/如果",
+            }
+          - {
+              sentence: "많이 아프면 학교에 오지 마세요.",
+              translation: "如果病得很重，请不要来学校。",
+              focus: "아프면",
+              answer: "아프면",
+              dictionaryForm: "아프다",
+              choices: ["아파서", "아프고", "아프지만"],
+              hint: "假设条件/如果",
+            }
+          - {
+              sentence: "싫으면 다른 것으로 바꾸세요.",
+              translation: "如果不喜欢，请换别的。",
+              focus: "싫으면",
+              answer: "싫으면",
+              dictionaryForm: "싫다",
+              choices: ["싫어서", "싫고", "싫지만"],
+              hint: "假设条件/如果",
+            }
+          - {
+              sentence: "스트레스가 쌓이면 어떻게 하세요?",
+              translation: "如果有压力（积累），你怎么做？",
+              focus: "쌓이면",
+              answer: "쌓이면",
+              dictionaryForm: "쌓이다",
+              choices: ["쌓여서", "쌓이고", "쌓이지만"],
+              hint: "假设条件/如果",
+            }
 
       - id: G-L08-06
         name: 만
         function: 助词，用于名词或部分副词后，表示“仅仅、只”。
         examples:
-          - { sentence: "10분만 자고 싶어요.", translation: "只想睡10分钟。", focus: "만", answer: "만", choices: ["도", "밖에", "이나"], hint: "仅仅/只" }
-          - { sentence: "한 개만 주세요.", translation: "请只给我一个。", focus: "만", answer: "만", choices: ["도", "밖에", "이나"], hint: "仅仅/只" }
-          - { sentence: "당신만 사랑해요.", translation: "只爱你。", focus: "만", answer: "만", choices: ["도", "밖에", "이나"], hint: "仅仅/只" }
-          - { sentence: "잠깐만 기다리세요.", translation: "请稍等一下。", focus: "만", answer: "만", choices: ["도", "밖에", "이나"], hint: "仅仅/只" }
-          - { sentence: "조그만 더 주세요.", translation: "请再给我一点点。", focus: "조그만", answer: "조그만", choices: ["조금", "작은", "많이"], hint: "一点点（固定用法）" }
+          - {
+              sentence: "10분만 자고 싶어요.",
+              translation: "只想睡10分钟。",
+              focus: "만",
+              answer: "만",
+              choices: ["도", "밖에", "이나"],
+              hint: "仅仅/只",
+            }
+          - {
+              sentence: "한 개만 주세요.",
+              translation: "请只给我一个。",
+              focus: "만",
+              answer: "만",
+              choices: ["도", "밖에", "이나"],
+              hint: "仅仅/只",
+            }
+          - {
+              sentence: "당신만 사랑해요.",
+              translation: "只爱你。",
+              focus: "만",
+              answer: "만",
+              choices: ["도", "밖에", "이나"],
+              hint: "仅仅/只",
+            }
+          - {
+              sentence: "잠깐만 기다리세요.",
+              translation: "请稍等一下。",
+              focus: "만",
+              answer: "만",
+              choices: ["도", "밖에", "이나"],
+              hint: "仅仅/只",
+            }
+          - {
+              sentence: "조그만 더 주세요.",
+              translation: "请再给我一点点。",
+              focus: "조그만",
+              answer: "조그만",
+              choices: ["조금", "작은", "많이"],
+              hint: "一点点（固定用法）",
+            }

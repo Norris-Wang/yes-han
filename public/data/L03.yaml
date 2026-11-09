@@ -107,8 +107,20 @@ lessons:
           - { id: V-L03-FAM-06, word: 아버지, meaning: 爸爸, tags: [가족] }
           - { id: V-L03-FAM-07, word: 어머니, meaning: 妈妈, tags: [가족] }
           - { id: V-L03-FAM-08, word: 형제, meaning: 兄弟, tags: [가족] }
-          - { id: V-L03-FAM-09, word: 형/오빠, meaning: 哥哥, tags: [가족] }
-          - { id: V-L03-FAM-10, word: 누나/언니, meaning: 姐姐, tags: [가족] }
+          - {
+              id: V-L03-FAM-09,
+              word: 형/오빠,
+              meaning: 哥哥,
+              accept: [형, 오빠],
+              tags: [가족],
+            }
+          - {
+              id: V-L03-FAM-10,
+              word: 누나/언니,
+              meaning: 姐姐,
+              accept: [누나, 언니],
+              tags: [가족],
+            }
           - { id: V-L03-FAM-11, word: 남동생, meaning: 弟弟, tags: [가족] }
           - { id: V-L03-FAM-12, word: 여동생, meaning: 妹妹, tags: [가족] }
           - { id: V-L03-FAM-13, word: 고모, meaning: 姑妈, tags: [가족] }
@@ -129,6 +141,7 @@ lessons:
               id: V-L03-HON-03,
               word: 잡수시다/드시다,
               meaning: 吃,
+              accept: [잡수시다, 드시다],
               tags: [존대어],
             }
           - { id: V-L03-HON-04, word: 말씀하시다, meaning: 说, tags: [존대어] }

@@ -163,7 +163,7 @@ lessons:
               word: 밑/아래,
               meaning: 下,
               tags: [위치],
-              accept: ["밑", "아래"],
+              accept: [밑, 아래],
             }
           - { id: V-L02-POS-06, word: 안, meaning: 里, tags: [위치] }
           - { id: V-L02-POS-07, word: 밖, meaning: 外, tags: [위치] }

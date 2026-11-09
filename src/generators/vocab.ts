@@ -26,9 +26,7 @@ export function genVocabZh2Kr(v: Vocab, kb: KnowledgeBase): GeneratedQuestion {
 
 export function genVocabFill(v: Vocab, kb: KnowledgeBase): GeneratedQuestion {
     const acceptList = new Set<string>([v.word]);
-    if (v.word.includes("/")) {
-        v.word.split("/").forEach(part => acceptList.add(part.trim()));
-    }
+
     if (v.accept) {
         v.accept.forEach(a => acceptList.add(a));
     }

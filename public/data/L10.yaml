@@ -390,9 +390,9 @@ lessons:
             hint: 计划·意图
           - sentence: 우리 아들은 의사가 되려고 합니다.
             translation: 我儿子打算当医生。
-            focus: 되려고 합니까
+            focus: 되려고 합니다
             cloze: 우리 아들은 의사가 {되려고 합니다}.
-            answer: 되려고 합니까
+            answer: 되려고 합니다
             choices:
               - 되으려고 합니까
               - 되는려고 합니까

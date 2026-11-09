@@ -127,6 +127,7 @@ lessons:
               id: V-L06-COLOR-05,
               word: 까만색/검은색,
               meaning: 黑色,
+              accept: [까만색, 검은색],
               tags: [색],
             }
 
