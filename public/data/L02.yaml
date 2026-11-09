@@ -181,7 +181,6 @@ lessons:
               answer: "이",
               dictionaryForm: "이/가",
               choices: ["가", "은", "는"],
-              hint: "主语",
             }
           - {
               sentence: "여기가 학교입니다.",
@@ -190,7 +189,6 @@ lessons:
               answer: "가",
               dictionaryForm: "이/가",
               choices: ["이", "은", "는"],
-              hint: "主语",
             }
           - {
               sentence: "친구가 많습니다.",
@@ -199,7 +197,6 @@ lessons:
               answer: "가",
               dictionaryForm: "이/가",
               choices: ["이", "은", "는"],
-              hint: "主语",
             }
           - {
               sentence: "내가 말했습니다.",
@@ -263,7 +260,6 @@ lessons:
               focus: "도",
               answer: "도",
               choices: ["이", "가", "는"],
-              hint: "也",
             }
           - {
               sentence: "도서관에서 공부합니다. 집에서도 공부합니다.",
@@ -272,7 +268,6 @@ lessons:
               focus: "도",
               answer: "도",
               choices: ["에", "에서", "는"],
-              hint: "也",
             }
           - {
               sentence: "산에 갑니다. 바다에도 갑니다.",
@@ -281,7 +276,6 @@ lessons:
               focus: "도",
               answer: "도",
               choices: ["이", "가", "는"],
-              hint: "也",
             }
 
       - id: G-L02-04
@@ -295,7 +289,6 @@ lessons:
               answer: "있습니까",
               dictionaryForm: "있다",
               choices: ["있습니다", "없습니까", "있었습니다"],
-              hint: "있다/없다",
             }
           - {
               sentence: "돈이 없습니까?",
@@ -304,7 +297,6 @@ lessons:
               answer: "없습니까",
               dictionaryForm: "없다",
               choices: ["없습니다", "있습니까", "없었습니다"],
-              hint: "있다/없다",
             }
           - {
               sentence: "선생님이 계십니다.",
@@ -326,7 +318,6 @@ lessons:
               focus: "에",
               answer: "에",
               choices: ["에서", "도", "하고"],
-              hint: "存在处所",
             }
           - {
               sentence: "교실에 텔레비전이 없습니다.",
@@ -334,7 +325,6 @@ lessons:
               focus: "에",
               answer: "에",
               choices: ["에서", "도", "하고"],
-              hint: "存在处所",
             }
           - {
               sentence: "고양이가 방에 없습니다.",
@@ -342,7 +332,6 @@ lessons:
               focus: "에",
               answer: "에",
               choices: ["에서", "도", "하고"],
-              hint: "存在处所",
             }
 
       - id: G-L02-06
@@ -356,7 +345,6 @@ lessons:
               answer: "하고",
               accept: ["과", "이랑"],
               choices: ["에", "도", "에서"],
-              hint: "和",
             }
           - {
               sentence: "빵하고 김밥을 먹습니다.",
@@ -365,7 +353,6 @@ lessons:
               answer: "하고",
               accept: ["과", "이랑"],
               choices: ["에", "도", "에서"],
-              hint: "和",
             }
           - {
               sentence: "가방하고 구두를 삽니다.",
@@ -374,5 +361,4 @@ lessons:
               answer: "하고",
               accept: ["과", "이랑"],
               choices: ["에", "도", "에서"],
-              hint: "和",
             }

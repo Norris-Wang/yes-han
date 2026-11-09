@@ -66,6 +66,55 @@ export function pickDistractors(
     return out;
 }
 
+
+const VOCAB_TAG_LABELS: Record<string, string> = {
+    "동사": "动词",
+    "형용사": "形容词",
+    "존대어": "敬语",
+    "수": "数词",
+    "단위": "单位词"
+};
+
+// 只显示真正有助于答题的标签。
+// 家庭、食物、交通等主题标签暂不显示。
+export function getVocabTagHint(
+    tags: readonly string[]
+): string {
+    const labels = tags
+        .map(tag => VOCAB_TAG_LABELS[tag])
+        .filter(
+            (label): label is string =>
+                typeof label === "string"
+        );
+
+    return [...new Set(labels)].join(" · ");
+}
+
+// 生成用于消除歧义的完整说明。
+// 优先利用 tags，必要时补充 context。
+export function getVocabDescriptor(
+    vocab: Pick<Vocab, "tags" | "context">,
+    groupContext?: string
+): string {
+    const tagHint = getVocabTagHint(vocab.tags);
+
+    const rawContext =
+        vocab.context?.trim() ||
+        groupContext?.trim() ||
+        "";
+
+    // 避免出现“动词原形 · 动词”这种重复说明。
+    const context =
+        rawContext && !tagHint.includes(rawContext)
+            ? rawContext
+            : "";
+
+    return [tagHint, context]
+        .filter(Boolean)
+        .join(" · ");
+}
+
+
 export function getVocabPrompt(
     v: Vocab,
     kb: KnowledgeBase,
@@ -74,8 +123,6 @@ export function getVocabPrompt(
     const { allVocab, contextOf } =
         buildVocabIndex(kb);
 
-    // 韩→中：同一个韩语词是否具有不同中文释义
-    // 中→韩：同一个中文释义是否对应不同韩语表达
     const ambiguous = allVocab.some(other => {
         if (direction === "kr2zh") {
             return (
@@ -91,22 +138,31 @@ export function getVocabPrompt(
     });
 
     const raw =
-        direction === "kr2zh" ? v.word : v.meaning;
+        direction === "kr2zh"
+            ? v.word
+            : v.meaning;
 
-    // 没有歧义：保持题目简洁
-    if (!ambiguous) {
-        return raw;
+    let descriptor = "";
+
+    if (ambiguous) {
+        // 有歧义时，标签和 context 一起参与区分。
+        descriptor = getVocabDescriptor(
+            v,
+            contextOf.get(v.id)
+        );
+    } else if (direction === "zh2kr") {
+        // 中→韩：即使没有歧义，也提示词性。
+        descriptor = getVocabTagHint(v.tags);
     }
 
-    // 有歧义：必须提供明确的语境
-    const context = contextOf.get(v.id);
-
-    if (!context) {
+    if (ambiguous && !descriptor) {
         throw new Error(
             `词汇 ${v.id}（${v.word}）存在歧义，` +
-            `但没有提供 context`
+            "需要补充可区分答案的 context"
         );
     }
 
-    return `${raw}（${context}）`;
+    return descriptor
+        ? `${raw}（${descriptor}）`
+        : raw;
 }

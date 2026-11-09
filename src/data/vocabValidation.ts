@@ -1,9 +1,10 @@
 
 import type { KnowledgeBase } from "./schema";
+import { getVocabDescriptor } from "../generators/utils";
 
 /**
- * 确保同形异义词、多种韩语表达具有足够的语境信息。
- * 在知识库加载完成后调用。
+ * 检查不同词汇答案是否能通过标签或语境区分。
+ * tags 优先，context 作为补充。
  */
 export function assertVocabularyDisambiguation(
     kb: KnowledgeBase
@@ -14,6 +15,7 @@ export function assertVocabularyDisambiguation(
                 id: `${lesson.id}/${vocab.id}`,
                 word: vocab.word,
                 meaning: vocab.meaning,
+                tags: vocab.tags,
                 context:
                     vocab.context?.trim() ||
                     group.context?.trim() ||
@@ -23,38 +25,44 @@ export function assertVocabularyDisambiguation(
     );
 
     for (const target of entries) {
-        // 同一个韩语词，不同的中文含义
-        const sameWord = entries.filter(other =>
-            other.word === target.word &&
-            other.meaning !== target.meaning
+        const conflicts = entries.filter(other =>
+            (
+                other.word === target.word &&
+                other.meaning !== target.meaning
+            ) ||
+            (
+                other.meaning === target.meaning &&
+                other.word !== target.word
+            )
         );
-
-        // 同一个中文含义，不同的韩语表达
-        const sameMeaning = entries.filter(other =>
-            other.meaning === target.meaning &&
-            other.word !== target.word
-        );
-
-        const conflicts = [...sameWord, ...sameMeaning];
 
         if (conflicts.length === 0) {
             continue;
         }
 
-        if (!target.context) {
+        const targetLabel =
+            getVocabDescriptor(target);
+
+        if (!targetLabel) {
             throw new Error(
                 `词汇 ${target.id}（${target.word}）` +
-                `存在歧义，请添加 context`
+                "存在歧义，tags 无法提供有效提示，" +
+                "请添加 context"
             );
         }
 
-        // 即使添加了语境，也必须能区分不同答案
         for (const other of conflicts) {
-            if (other.context === target.context) {
+            const otherLabel =
+                getVocabDescriptor(other);
+
+            if (
+                !otherLabel ||
+                targetLabel === otherLabel
+            ) {
                 throw new Error(
                     `词汇 ${target.id} 与 ${other.id} ` +
-                    `答案不同，却使用了相同语境：` +
-                    target.context
+                    "答案存在歧义，当前标签和语境" +
+                    "不足以区分，请补充不同的 context"
                 );
             }
         }

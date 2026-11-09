@@ -17,6 +17,7 @@ export const VocabSchema = z.object({
     word: z.string(),
     meaning: z.string(),
     context: z.string().optional(),
+    hint: z.string().optional(),
     tags: z.array(z.string()),
     accept: z.array(z.string()).optional(),
 });

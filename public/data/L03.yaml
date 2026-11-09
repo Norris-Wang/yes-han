@@ -123,30 +123,15 @@ lessons:
         name: 존대어
         kind: verb
         items:
-          - {
-              id: V-L03-HON-01,
-              word: 계시다,
-              meaning: 在（있다的敬语）,
-              tags: [존대어],
-            }
-          - {
-              id: V-L03-HON-02,
-              word: 주무시다,
-              meaning: 睡（자다的敬语）,
-              tags: [존대어],
-            }
+          - { id: V-L03-HON-01, word: 계시다, meaning: 在, tags: [존대어] }
+          - { id: V-L03-HON-02, word: 주무시다, meaning: 睡, tags: [존대어] }
           - {
               id: V-L03-HON-03,
               word: 잡수시다/드시다,
-              meaning: 吃（먹다的敬语）,
+              meaning: 吃,
               tags: [존대어],
             }
-          - {
-              id: V-L03-HON-04,
-              word: 말씀하시다,
-              meaning: 说（말하다的敬语）,
-              tags: [존대어],
-            }
+          - { id: V-L03-HON-04, word: 말씀하시다, meaning: 说, tags: [존대어] }
 
       - id: VG-L03-NUM
         name: 수 1 (하다-열)
@@ -222,7 +207,7 @@ lessons:
               answer: "가십니다",
               dictionaryForm: "가다",
               choices: ["갑니다", "가십니까", "가셨습니다"],
-              hint: "-(으) 시-",
+              hint: "敬语",
             }
           - {
               sentence: "김 선생님께서 가르치십니다.",
@@ -231,7 +216,7 @@ lessons:
               answer: "가르치십니다",
               dictionaryForm: "가르치다",
               choices: ["가르칩니다", "가르치십니까", "가르치셨습니다"],
-              hint: "-(으) 시-",
+              hint: "敬语",
             }
           - {
               sentence: "아버지께서는 신문을 읽었습니다.",
@@ -240,7 +225,7 @@ lessons:
               answer: "읽었습니다",
               dictionaryForm: "읽다",
               choices: ["읽습니다", "읽으십니다", "읽었습니까"],
-              hint: "-(으) 시-",
+              hint: "敬语",
             }
           - {
               sentence: "무슨 영화를 보셨습니까?",
@@ -249,7 +234,7 @@ lessons:
               answer: "보셨습니까",
               dictionaryForm: "보다",
               choices: ["봅니다", "보십니까", "보았습니다"],
-              hint: "-(으) 시-",
+              hint: "敬语",
             }
           - {
               sentence: "내일 회사에 가시겠습니까?",
@@ -258,7 +243,7 @@ lessons:
               answer: "가시겠습니까",
               dictionaryForm: "가다",
               choices: ["갑니다", "가십니다", "갔습니다"],
-              hint: "-(으) 시-",
+              hint: "敬语",
             }
 
       - id: G-L03-03

@@ -212,7 +212,13 @@ lessons:
               tags: [동사],
             }
           - { id: V-L05-V3-06, word: 숙제하다, meaning: 做作业, tags: [동사] }
-          - { id: V-L05-V3-07, word: 운동하다, meaning: 运动, tags: [동사] }
+          - {
+              id: V-L05-V3-07,
+              word: 운동하다,
+              meaning: 运动,
+              hint: "动词",
+              tags: [동사],
+            }
           - {
               id: V-L05-V3-08,
               word: 지하철에서 내리다,
@@ -266,7 +272,7 @@ lessons:
     grammars:
       - id: G-L05-01
         name: 까지
-        function: 助词，用于体词后，表示时间/地点的重点或顺序的末尾。
+        function: 助词，用于体词后，表示时间/地点的终点或顺序的末尾。
         examples:
           - {
               sentence: "종로까지 걸어갑니다.",
@@ -274,7 +280,7 @@ lessons:
               focus: "까지",
               answer: "까지",
               choices: ["부터", "에", "에서"],
-              hint: "终点助词",
+              hint: "终点",
             }
           - {
               sentence: "서울에서 부산까지 기차로 5시간 걸립니다.",
@@ -282,7 +288,6 @@ lessons:
               focus: "까지",
               answer: "까지",
               choices: ["부터", "에", "에서"],
-              hint: "终点助词",
             }
           - {
               sentence: "12 시에서 1 시까지 점심시간입니다.",
@@ -290,7 +295,6 @@ lessons:
               focus: "까지",
               answer: "까지",
               choices: ["부터", "에", "에서"],
-              hint: "终点助词",
             }
           - {
               sentence: "몇 시까지 갑니까?",
@@ -298,7 +302,7 @@ lessons:
               focus: "까지",
               answer: "까지",
               choices: ["부터", "에", "에서"],
-              hint: "终点助词",
+              hint: "终点",
             }
           - {
               sentence: "여기까지 하십시오.",
@@ -306,7 +310,7 @@ lessons:
               focus: "까지",
               answer: "까지",
               choices: ["부터", "에", "에서"],
-              hint: "终点助词",
+              hint: "终点",
             }
 
       - id: G-L05-02
@@ -320,7 +324,7 @@ lessons:
               answer: "이에요",
               dictionaryForm: "이다",
               choices: ["이에요?", "입니까", "입니다"],
-              hint: "体词谓词形",
+              hint: "非格式体",
             }
           - {
               sentence: "학교에 가요.",
@@ -329,7 +333,7 @@ lessons:
               answer: "가요",
               dictionaryForm: "가다",
               choices: ["갑니다", "갈까요", "가세요"],
-              hint: "谓词(无收音+아요)",
+              hint: "非格式体",
             }
           - {
               sentence: "한국어를 공부해요.",
@@ -338,7 +342,7 @@ lessons:
               answer: "공부해요",
               dictionaryForm: "공부하다",
               choices: ["공부합니다", "공부할까요", "공부하세요"],
-              hint: "하다+여요变해요",
+              hint: "非格式体",
             }
 
       - id: G-L05-03
@@ -388,12 +392,12 @@ lessons:
               answer: "목요일이지요",
               dictionaryForm: "목요일이다",
               choices: ["목요일입니다", "목요일입니까", "목요일이에요"],
-              hint: "寻求确认(体词)",
+              hint: "寻求确认",
             }
 
       - id: G-L05-04
         name: -(으) 세요
-        function: 终结词尾，通过在“-어요/아요/해요”前加上尊称词尾“- (으) 시”而得到，可用于陈述句、疑问句、命令句和共动句。
+        function: 终结词尾，通过在 -어요/아요/해요 前加上尊称词尾 - (으) 시 而得到，可用于陈述句、疑问句、命令句和共动句。
         examples:
           - {
               sentence: "이번에는 홍 선생님이 가세요.",
@@ -402,7 +406,7 @@ lessons:
               answer: "가세요",
               dictionaryForm: "가다",
               choices: ["갑니다", "가십시오", "갈까요"],
-              hint: "尊称",
+              hint: "非格式体敬语",
             }
           - {
               sentence: "어떤 음식이 좋으세요?",
@@ -411,7 +415,7 @@ lessons:
               answer: "좋으세요",
               dictionaryForm: "좋다",
               choices: ["좋습니다", "좋으십니까", "좋을까요"],
-              hint: "尊称(疑问)",
+              hint: "非格式体敬语",
             }
           - {
               sentence: "요즘 많이 받으세요?",
@@ -420,7 +424,7 @@ lessons:
               answer: "받으세요",
               dictionaryForm: "받다",
               choices: ["받습니다", "받으십니까", "받을까요"],
-              hint: "尊称(疑问)",
+              hint: "非格式体敬语",
             }
           - {
               sentence: "저와 같이 가세요.",
@@ -429,53 +433,41 @@ lessons:
               answer: "가세요",
               dictionaryForm: "가다",
               choices: ["갑니다", "가십시오", "갈까요"],
-              hint: "尊称(命令)",
+              hint: "非格式体敬语",
             }
 
       - id: G-L05-05
         name: 에 (时间)
         function: 和表示时间的体词连用，表示动作或状态发生的时间。不与 언제, 오늘, 내일, 어제, 그저께, 모레 等词连用。
         examples:
-          - {
-              sentence: "9시에 학교에 갑니다.",
-              translation: "9点去学校。",
-              focus: "9시에",
-              answer: "9시에",
-              choices: ["9시", "9시에서", "9시까지"],
-              hint: "时间助词(几点)",
-            }
-          - {
-              sentence: "12시에 점심을 먹습니다.",
-              translation: "12点吃午饭。",
-              focus: "12시에",
-              answer: "12시에",
-              choices: ["12시", "12시에서", "12시까지"],
-              hint: "时间助词(几点)",
-            }
-          - {
-              sentence: "내년에 대학교를 졸업합니다.",
-              translation: "明年大学毕业。",
-              focus: "내년에",
-              answer: "내년에",
-              choices: ["내년", "내년에서", "내년까지"],
-              hint: "时间助词(年份)",
-            }
-          - {
-              sentence: "겨울에는 날씨가 춥습니다.",
-              translation: "冬天天气冷。",
-              focus: "겨울에는",
-              answer: "겨울에는",
-              choices: ["겨울", "겨울에서", "겨울까지"],
-              hint: "时间助词(季节)",
-            }
-          - {
-              sentence: "언제 한국에 오셨습니까?",
-              translation: "什么时候来韩国的？",
-              focus: "한국에",
-              answer: "한국에",
-              choices: ["한국", "한국에서", "한국까지"],
-              hint: "目的地助词(此处不为时间)",
-            }
+          - sentence: "9시에 학교에 갑니다."
+            translation: "9点去学校。"
+            focus: "에"
+            cloze: "9시{에} 학교에 갑니다."
+            answer: "에"
+            choices: ["에서", "에게", "으로"]
+
+          - sentence: "12시에 점심을 먹습니다."
+            translation: "12点吃午饭。"
+            focus: "에"
+            cloze: "12시{에} 점심을 먹습니다."
+            answer: "에"
+            choices: ["에서", "에게", "으로"]
+
+          - sentence: "내년에 대학교를 졸업합니다."
+            translation: "明年大学毕业。"
+            focus: "에"
+            cloze: "내년{에} 대학교를 졸업합니다."
+            answer: "에"
+            choices: ["에서", "에게", "으로"]
+
+          - sentence: "겨울에는 날씨가 춥습니다."
+            translation: "冬天天气冷。"
+            focus: "에는"
+            cloze: "겨울{에는} 날씨가 춥습니다."
+            answer: "에는"
+            accept: ["에"]
+            choices: ["에서", "에게", "으로"]
 
       - id: G-L05-06
         name: 부터 ~ 까지
@@ -484,7 +476,7 @@ lessons:
 
       - id: G-L05-07
         name: -고
-        function: 连接词尾，和动词词干连用，表示动作发生的顺序。此时，“고”不和过去时词尾“-았/었/했”连用。句子时态由“-고”后的动词决定。
+        function: 连接词尾，和动词词干连用，表示动作发生的顺序。此时， 고 不和过去时词尾 -았/었/했 连用。句子时态由 -고 后的动词决定。
         examples: []
 
       - id: G-L05-08

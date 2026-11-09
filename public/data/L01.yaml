@@ -223,7 +223,6 @@ lessons:
               focus: "입니까",
               answer: "입니까",
               choices: ["입니다", "이 아닙니다", "습니까"],
-              hint: "疑问",
             }
           - {
               sentence: "지금이 두 시입니까?",
@@ -231,7 +230,6 @@ lessons:
               focus: "입니까",
               answer: "입니까",
               choices: ["입니다", "이 아닙니다", "습니까"],
-              hint: "疑问",
             }
           - {
               sentence: "여기가 신촌입니까?",
@@ -239,7 +237,6 @@ lessons:
               focus: "입니까",
               answer: "입니까",
               choices: ["입니다", "이 아닙니다", "습니까"],
-              hint: "疑问",
             }
           - {
               sentence: "이 책은 누구 책입니까?",
@@ -247,7 +244,6 @@ lessons:
               focus: "입니까",
               answer: "입니까",
               choices: ["입니다", "이 아닙니다", "습니까"],
-              hint: "疑问",
             }
           - {
               sentence: "오늘이 며칠입니까?",
@@ -255,7 +251,6 @@ lessons:
               focus: "입니까",
               answer: "입니까",
               choices: ["입니다", "이 아닙니다", "습니까"],
-              hint: "疑问",
             }
 
       - id: G-L01-04

@@ -35,7 +35,10 @@ export function genVocabFill(v: Vocab, kb: KnowledgeBase): GeneratedQuestion {
 
     return {
         type: "vocab_fill",
-        prompt: `${getVocabPrompt(v, kb, "zh2kr")}`,
+        prompt: [
+            getVocabPrompt(v, kb, "zh2kr"),
+            v.hint ? `（${v.hint}）` : ""
+        ].filter(Boolean).join("\n"),
         answer: v.word,
         accept: Array.from(acceptList),
         explanation: `${v.meaning} = ${v.word}`,

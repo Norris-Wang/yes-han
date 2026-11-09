@@ -256,7 +256,7 @@ lessons:
               answer: "먹을까요",
               dictionaryForm: "먹다",
               choices: ["먹습니다", "먹으십시오", "먹겠습니다"],
-              hint: "提议/询问",
+              hint: "提议",
             }
           - {
               sentence: "도서관에 갈까요?",
@@ -265,7 +265,7 @@ lessons:
               answer: "갈까요",
               dictionaryForm: "가다",
               choices: ["갑니다", "가십시오", "가겠습니다"],
-              hint: "提议/询问",
+              hint: "提议",
             }
           - {
               sentence: "무슨 영화를 볼까요?",
@@ -274,7 +274,7 @@ lessons:
               answer: "볼까요",
               dictionaryForm: "보다",
               choices: ["봅니다", "보십시오", "보겠습니다"],
-              hint: "提议/询问",
+              hint: "提议",
             }
           - {
               sentence: "책을 어디에 놓을까요?",
@@ -283,7 +283,7 @@ lessons:
               answer: "놓을까요",
               dictionaryForm: "놓다",
               choices: ["놓습니다", "놓으십시오", "놓겠습니다"],
-              hint: "询问意见",
+              hint: "提议",
             }
           - {
               sentence: "녹차를 드릴까요?",
@@ -292,7 +292,7 @@ lessons:
               answer: "드릴까요",
               dictionaryForm: "드리다",
               choices: ["드립니다", "드리십시오", "드리겠습니다"],
-              hint: "询问意见",
+              hint: "提议",
             }
 
       - id: G-L04-03
@@ -306,7 +306,7 @@ lessons:
               answer: "먹읍시다",
               dictionaryForm: "먹다",
               choices: ["먹습니다", "먹을까요", "먹으십시오"],
-              hint: "共动句",
+              hint: "提议",
             }
           - {
               sentence: "여기에 잠깐 앉읍시다.",
@@ -315,7 +315,7 @@ lessons:
               answer: "앉읍시다",
               dictionaryForm: "앉다",
               choices: ["앉습니다", "앉을까요", "앉으십시오"],
-              hint: "共动句",
+              hint: "提议",
             }
           - {
               sentence: "영화를 봅시다.",
@@ -324,7 +324,7 @@ lessons:
               answer: "봅시다",
               dictionaryForm: "보다",
               choices: ["봅니다", "볼까요", "보십시오"],
-              hint: "共动句",
+              hint: "提议",
             }
           - {
               sentence: "불고기를 시킵시다.",
@@ -333,7 +333,7 @@ lessons:
               answer: "시킵시다",
               dictionaryForm: "시키다",
               choices: ["시킵니다", "시킬까요", "시키십시오"],
-              hint: "共动句",
+              hint: "提议",
             }
 
       - id: G-L04-04
@@ -370,7 +370,7 @@ lessons:
               answer: "잡수시고 싶습니까",
               dictionaryForm: "잡수시다",
               choices: ["먹고 싶습니다", "잡수십니까", "먹을까요"],
-              hint: "愿望(疑问/敬语)",
+              hint: "愿望(敬语)",
             }
           - {
               sentence: "커피를 마시고 싶습니다.",
@@ -434,7 +434,7 @@ lessons:
               answer: "오십시오",
               dictionaryForm: "오다",
               choices: ["옵니다", "오십니까", "오겠습니다"],
-              hint: "命令/嘱托",
+              hint: "命令",
             }
           - {
               sentence: "조용히 하십시오.",
@@ -443,7 +443,7 @@ lessons:
               answer: "하십시오",
               dictionaryForm: "하다",
               choices: ["합니다", "하십니까", "하겠습니다"],
-              hint: "命令/嘱托",
+              hint: "命令",
             }
           - {
               sentence: "여기 앉으십시오.",
@@ -452,7 +452,7 @@ lessons:
               answer: "앉으십시오",
               dictionaryForm: "앉다",
               choices: ["앉습니다", "앉습니까", "앉겠습니다"],
-              hint: "命令/嘱托",
+              hint: "命令",
             }
           - {
               sentence: "교과서를 읽으십시오.",
@@ -461,7 +461,7 @@ lessons:
               answer: "읽으십시오",
               dictionaryForm: "읽다",
               choices: ["읽습니다", "읽습니까", "읽겠습니다"],
-              hint: "命令/嘱托",
+              hint: "命令",
             }
           - {
               sentence: "담배를 피우지 마십시오.",
@@ -470,5 +470,5 @@ lessons:
               answer: "피우지 마십시오",
               dictionaryForm: "피우다",
               choices: ["피웁니다", "피우십시오", "피우겠습니다"],
-              hint: "禁止/嘱托",
+              hint: "命令",
             }
