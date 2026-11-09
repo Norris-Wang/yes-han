@@ -174,7 +174,7 @@ lessons:
           - { id: V-L03-ADJ2-06, word: 좁다, meaning: 窄, tags: [형용사] }
           - { id: V-L03-ADJ2-07, word: 춥다, meaning: 冷, tags: [형용사] }
           - { id: V-L03-ADJ2-08, word: 덥다, meaning: 热, tags: [형용사] }
-          - { id: V-L03-ADJ2-09, word: 시원하다, meaning: 凉爽, tags: [형용사] }
+          - { id: V-L03-ADJ2-09, word: 시원하다, meaning: 清凉, tags: [형용사] }
           - { id: V-L03-ADJ2-10, word: 따뜻하다, meaning: 暖和, tags: [형용사] }
           - { id: V-L03-ADJ2-11, word: 예쁘다, meaning: 漂亮, tags: [형용사] }
           - {

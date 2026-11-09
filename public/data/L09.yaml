@@ -174,7 +174,7 @@ lessons:
         items:
           - id: V-L09-WEATHER-01
             word: 흐리다
-            meaning: 阴沉；多云
+            meaning: 阴沉
             tags:
               - 날씨（天气）
           - id: V-L09-WEATHER-02
@@ -189,7 +189,7 @@ lessons:
               - 날씨（天气）
           - id: V-L09-WEATHER-04
             word: 구름이 끼다
-            meaning: 多云；布满云
+            meaning: 多云
             tags:
               - 날씨（天气）
           - id: V-L09-WEATHER-05
@@ -295,6 +295,8 @@ lessons:
             meaning: 读书
             tags:
               - 계절 활동（季节活动）
+              - 동사
+
           - id: V-L09-ACTIVITY-07
             word: 단풍 구경을 가다
             meaning: 去赏红叶

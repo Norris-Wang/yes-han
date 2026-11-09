@@ -156,6 +156,7 @@ lessons:
             meaning: 看电影
             tags:
               - 취미（兴趣爱好）
+              - 명사
             accept:
               - 영화 감상
           - id: V-L10-HOBBY-02
@@ -163,6 +164,7 @@ lessons:
             meaning: 听音乐
             tags:
               - 취미（兴趣爱好）
+              - 명사
             accept:
               - 음악 감상
           - id: V-L10-HOBBY-03
@@ -170,6 +172,7 @@ lessons:
             meaning: 读书
             tags:
               - 취미（兴趣爱好）
+              - 명사
             accept:
               - 독서
           - id: V-L10-HOBBY-04
@@ -177,16 +180,19 @@ lessons:
             meaning: 摄影；拍照
             tags:
               - 취미（兴趣爱好）
+              - 명사
           - id: V-L10-HOBBY-05
             word: 그림 그리기
             meaning: 画画
             tags:
               - 취미（兴趣爱好）
+              - 명사
           - id: V-L10-HOBBY-06
             word: 노래 부르기
             meaning: 唱歌
             tags:
               - 취미（兴趣爱好）
+              - 명사
           - id: V-L10-HOBBY-07
             word: 여행
             meaning: 旅行
@@ -197,6 +203,7 @@ lessons:
             meaning: 登山
             tags:
               - 취미（兴趣爱好）
+              - 명사
           - id: V-L10-HOBBY-09
             word: 낚시
             meaning: 钓鱼
@@ -345,6 +352,7 @@ lessons:
             meaning: 登山
             tags:
               - 운동（运动搭配）
+              - 동사
           - id: V-L10-SPORT-15
             word: 태권도를 하다
             meaning: 练跆拳道
